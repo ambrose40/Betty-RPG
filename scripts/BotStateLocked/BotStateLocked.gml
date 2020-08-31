@@ -1,0 +1,5 @@
+function BotStateLocked() {
+	//do nothing
+
+
+}

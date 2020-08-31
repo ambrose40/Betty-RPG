@@ -1,0 +1,21 @@
+function BotStateBonk() {
+	hSpeed = lengthdir_x(speedBonk,direction-180);
+	vSpeed = lengthdir_y(speedBonk,direction-180);
+
+	moveDistanceRemaining = max(0, moveDistanceRemaining - speedBonk);
+	var _collided = BotCollision();
+	///Update sprite
+	sprite_index = sBotHurt;
+	image_index = CARDINAL_DIR+2;
+
+	//Change height
+	z = sin(((moveDistanceRemaining / distanceBonk) * pi)) * distanceBonkHeight;
+
+	//Change State
+	if (moveDistanceRemaining <= 0)
+	{
+		state = BotStateFree;		
+	}
+
+
+}
