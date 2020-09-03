@@ -4,6 +4,7 @@ flash = 0;
 r_color = 1;
 g_color = 0;
 b_color = 0;
+lifted = 0;
 uFlash = shader_get_uniform(shWhiteFlash,"flash");
 uRColor = shader_get_uniform(shWhiteFlash,"r_color");
 uGColor = shader_get_uniform(shWhiteFlash,"g_color");

@@ -10,5 +10,7 @@ function MACROS() {
 #macro RESOLUTION_W_S RESOLUTION_W * 1
 #macro RESOLUTION_H_S RESOLUTION_H * 1
 
-
+#macro TRANSITION_SPEED 0.02
+#macro OUT 0
+#macro IN 1
 }

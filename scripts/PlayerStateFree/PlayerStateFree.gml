@@ -23,7 +23,7 @@ function PlayerStateFree() {
 		state = PlayerStateAttack;
 		stateAttack = AttackSlash;
 	}
-	
+
 	//Activate key logic
 	if (keyActivate)
 	{
