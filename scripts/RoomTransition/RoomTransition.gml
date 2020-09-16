@@ -11,6 +11,4 @@ function RoomTransition() {
 			target = argument[1];
 		}
 	} else show_debug_message("Trying to transition while transition is happening!");
-
-
 }
