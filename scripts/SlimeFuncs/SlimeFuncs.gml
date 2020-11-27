@@ -165,10 +165,19 @@ function SlimeHurt()
 	}
 	else
 	{
+		var _x = x;
+		var _y = y;
 		x = xTo;
 		y = yTo;	
 		if (statePrevious != ENEMYSTATE.ATTACK)	state = statePrevious; else state = ENEMYSTATE.CHASE;
-	
+		//Collide & move, if collision then stop knockback
+		if (EnemyTileCollision()) 
+		{
+			x = _x; 
+			y = _y;
+			xTo = x;
+			yTo = y;
+		}
 	}
 }
 	
