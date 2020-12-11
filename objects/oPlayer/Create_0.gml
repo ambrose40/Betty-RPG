@@ -3,6 +3,10 @@ stateAttack = AttackSlash;
 hitByAttack = -1;
 lastState = state;
 
+r_color = 1;
+g_color = 1;
+b_color = 1;
+
 collisionMap = layer_tilemap_get_id(layer_get_id("Col"));
 depth = -1000;
 image_speed = 0;
@@ -15,6 +19,12 @@ speedBonk = 1.5;
 distanceBonk = 40;
 distanceBonkHeight = 12;
 z = 0;
+
+// Taking damage
+invulnerable = 0;
+flash = 0;
+flashShader = shWhiteFlash;
+
 animationEndScript = -1;
 
 spriteRoll = sPlayerRoll;
