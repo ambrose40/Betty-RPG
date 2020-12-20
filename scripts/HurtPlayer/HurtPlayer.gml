@@ -15,8 +15,7 @@ function HurtPlayer(_direction, _force, _damage) {
 				flashShader = shRedFlash;
 			}
 		} else {
-			// kill the player
+			with (oPlayer) state = PlayerStateDead;
 		}
 	}
-
 }

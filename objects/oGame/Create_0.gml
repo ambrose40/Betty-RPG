@@ -8,7 +8,7 @@ global.targetX = -1;
 global.targetY = -1;
 global.targetDirection = 0;
 global.playerHealthMax = 5;
-global.playerHealth = 4.5;//global.playerHealthMax;
+global.playerHealth = global.playerHealthMax;
 global.iLifted = noone;
 
 global.iCamera = instance_create_layer(0,0,layer,oCamera);
