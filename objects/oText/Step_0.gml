@@ -13,8 +13,6 @@ var _min = 0;
 if (responseSelected > _max) responseSelected = _min;
 if (responseSelected < _min) responseSelected = _max;
 
-
-
 //End Message
 if (keyboard_check_pressed(vk_space))
 {
@@ -34,6 +32,7 @@ if (keyboard_check_pressed(vk_space))
 		else
 		{
 			with (oPlayer) state = lastState;	
+			PlayMainMusic();
 		}
 	}
 	else

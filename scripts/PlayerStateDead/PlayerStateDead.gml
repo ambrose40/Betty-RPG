@@ -1,4 +1,7 @@
 function PlayerStateDead() {
+	if (sprite_index != sPlayerDie && sprite_index != sPlayerDead) {
+		PlayDeathMusic();
+	}
 	hSpeed = 0;
 	vSpeed = 0;
 	
@@ -7,7 +10,7 @@ function PlayerStateDead() {
 		//update the sprite
 		sprite_index = sPlayerDie;
 		image_index = 0;
-		image_speed = 0.7;
+		image_speed = 0.8;
 	}
 	
 	//Animation ending this frame?

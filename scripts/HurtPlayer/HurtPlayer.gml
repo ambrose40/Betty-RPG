@@ -1,6 +1,9 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function HurtPlayer(_direction, _force, _damage) {
+	if (oPlayer.state != PlayerStateDead) {
+		PlayBattleMusic();
+	}
 	if (oPlayer.invulnerable <= 0) {
 		global.playerHealth = max(0, global.playerHealth - _damage);
 		

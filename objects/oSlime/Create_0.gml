@@ -6,10 +6,8 @@ sprMove = sSlime;
 sprAttack = sSlimeAttack;
 sprDie = sSlimeDie;
 sprHurt = sSlimeHurt;
-
-//Enemy Scripts
-enemyScript[ENEMYSTATE.WANDER] = SlimeWander;
-enemyScript[ENEMYSTATE.CHASE] = SlimeChase;
-enemyScript[ENEMYSTATE.ATTACK] = SlimeAttack;
-enemyScript[ENEMYSTATE.HURT] = SlimeHurt;
-enemyScript[ENEMYSTATE.DIE] = SlimeDie;
+enemyScript[ENEMYSTATE.WANDER] = EnemyWander;
+enemyScript[ENEMYSTATE.CHASE] = EnemyChase;
+enemyScript[ENEMYSTATE.ATTACK] = EnemyAttack;
+enemyScript[ENEMYSTATE.HURT] = EnemyHurt;
+enemyScript[ENEMYSTATE.DIE] = EnemyDie;

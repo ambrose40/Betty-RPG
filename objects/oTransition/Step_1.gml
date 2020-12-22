@@ -15,6 +15,7 @@ if (leading == OUT) {
 	percent = max (0, percent - 0.02) // - (percent/25));
 	if (percent <= 0) { // If screen fully revealed
 		with (oPlayer) state = PlayerStateFree;
+		PlayMainMusic();
 		instance_destroy();
 	}
 }

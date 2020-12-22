@@ -30,7 +30,9 @@ function CalcAttack(argument0)
 
 function HurtEnemy(_enemy, _damage, _source, _knockback) 
 {
-
+	if (oPlayer.state != PlayerStateDead) {
+		PlayBattleMusic();
+	}
 	with (_enemy)
 	{
 		if (state != ENEMYSTATE.DIE)

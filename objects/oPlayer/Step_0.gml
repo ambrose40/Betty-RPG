@@ -22,5 +22,5 @@ if (!global.gamePaused) {
 	invulnerable = max(invulnerable-1,0);
 	flash = max(flash-0.05,0);
 }
-
+audio_listener_position(x, y, z);
 depth = -bbox_bottom;

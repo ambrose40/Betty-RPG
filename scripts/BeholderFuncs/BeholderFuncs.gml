@@ -1,5 +1,11 @@
-function BeholderAttack() 
-{
+function BeholderAttack() {
+	if (oPlayer.state != PlayerStateDead) {
+		PlayBattleMusic();
+	} else {
+		BeholderWander();
+		return;
+	}
+	
 	//How fast to move
 	var _spd = enemySpeed;
 
@@ -16,8 +22,7 @@ function BeholderAttack()
 	if (_distanceToGo < 4) && (image_index < 8) image_speed = 1;
 
 	//Move
-	if (_distanceToGo > _spd)
-	{
+	if (_distanceToGo > _spd) {
 		dir = point_direction(x,y,xTo,yTo);
 		hSpeed = lengthdir_x(_spd,dir);
 		vSpeed = lengthdir_y(_spd,dir);
@@ -29,41 +34,37 @@ function BeholderAttack()
 			xTo = x;
 			yTo = y;
 		}
-	}
-	else
-	{
+	} else {
 		x = xTo;
 		y = yTo;	
-		if (floor(image_index) == 8)
-		{
+		if (floor(image_index) == 8) {
 			stateTarget = ENEMYSTATE.CHASE;
 			stateWaitDuration = 15;
 			state = ENEMYSTATE.WAIT;
 		}
 	}
-
-
 }
 
-function BeholderChase() 
-{
+function BeholderChase() {
+	if (oPlayer.state != PlayerStateDead) {
+		PlayBattleMusic();
+	} else {
+		BeholderWander();
+		return;
+	}
 	sprite_index = sprMove;
 
-	if (instance_exists(target))
-	{
+	if (instance_exists(target)) {
 		xTo = target.x;
 		yTo = target.y;
 	
 		var _distanceToGo = point_distance(x,y,xTo,yTo);
 		image_speed = 1.0;
 		dir = point_direction(x,y,xTo,yTo);
-		if (_distanceToGo > enemySpeed)
-		{
+		if (_distanceToGo > enemySpeed) {
 			hSpeed = lengthdir_x(enemySpeed,dir);
 			vSpeed = lengthdir_y(enemySpeed,dir);
-		}
-		else
-		{
+		} else {
 			hSpeed = lengthdir_x(_distanceToGo,dir);
 			vSpeed = lengthdir_y(_distanceToGo,dir);		
 		}
@@ -72,9 +73,8 @@ function BeholderChase()
 		EnemyTileCollision();
 	}
 
-	//Check if close enough to launch an attack
-	if (instance_exists(target)) && (point_distance(x,y,target.x,target.y) <= enemyAttackRadius)
-	{
+	// Check if close enough to launch an attack
+	if (instance_exists(target)) && (point_distance(x,y,target.x,target.y) <= enemyAttackRadius) {
 		state = ENEMYSTATE.ATTACK;
 		sprite_index = sprAttack;
 		image_index = 0;
@@ -85,34 +85,28 @@ function BeholderChase()
 	}
 }
 
-function BeholderWander() 
-{
+function BeholderWander() {
 	sprite_index = sprMove;
 
-	//At destination or given up?
-	if ((x == xTo) && (y == yTo)) || (timePassed > enemyWanderDistance / enemySpeed) 
-	{
+	// At destination or given up?
+	if ((x == xTo) && (y == yTo)) || (timePassed > enemyWanderDistance / enemySpeed) {
 		hSpeed = 0;
 		vSpeed = 0;
-		//End move animation
-		if (image_index < 1)
-		{
+		// End move animation
+		if (image_index < 1) {
 			image_speed = 0.0;
 			image_index = 0;
 		}
 	
-		//Set new target destination
-		if (++wait >= waitDuration)
-		{
+		// Set new target destination
+		if (++wait >= waitDuration) {
 			wait = 0;	
 			timePassed = 0;
 			dir = point_direction(x,y,xstart,ystart) + irandom_range(-45,45)
 			xTo = x + lengthdir_x(enemyWanderDistance,dir)
 			yTo = y + lengthdir_y(enemyWanderDistance,dir)
 		}
-	}
-	else //move towards destination
-	{
+	} else {// Move towards destination
 		timePassed++;
 		var _distanceToGo = point_distance(x,y,xTo,yTo);
 		var _speedThisFrame = enemySpeed;
@@ -122,54 +116,43 @@ function BeholderWander()
 		hSpeed = lengthdir_x(_speedThisFrame,dir);
 		vSpeed = lengthdir_y(_speedThisFrame,dir);
 		if (hSpeed != 0) image_xscale = sign(hSpeed);
-		
-		//Collide & move
+		// Collide & move
 		EnemyTileCollision();
 	}
 
-	//Check for aggro
-	if (++aggroCheck >= aggroCheckDuration)
-	{
+	// Check for aggro
+	if (++aggroCheck >= aggroCheckDuration) {
 		aggroCheck = 0;
-		if (instance_exists(oPlayer)) && (point_distance(x,y,oPlayer.x,oPlayer.y) <= enemyAggroRadius)
-		{
+		if (instance_exists(oPlayer)) && (point_distance(x,y,oPlayer.x,oPlayer.y) <= enemyAggroRadius) {
 			state = ENEMYSTATE.CHASE;
 			target = oPlayer;
 		}
 	}
-
-
 }
 
-function BeholderHurt() 
-{
+function BeholderHurt() {
 	sprite_index = sprHurt;
 	var _distanceToGo = point_distance(x,y,xTo,yTo);
-	if (_distanceToGo > enemySpeed)
-	{
+	if (_distanceToGo > enemySpeed) {
 		image_speed = 1.0;
 		dir = point_direction(x,y,xTo,yTo);
 		hSpeed = lengthdir_x(enemySpeed,dir);
 		vSpeed = lengthdir_y(enemySpeed,dir);
 		if (hSpeed != 0) image_xscale = -sign(hSpeed);
 		
-		//Collide & move, if collision then stop knockback
-		if (EnemyTileCollision()) 
-		{
+		// Collide & move, if collision then stop knockback
+		if (EnemyTileCollision()) {
 			xTo = x; 
 			yTo = y;
 		}
-	}
-	else
-	{
+	} else {
 		var _x = x;
 		var _y = y;
 		x = xTo;
 		y = yTo;	
 		if (statePrevious != ENEMYSTATE.ATTACK)	state = statePrevious; else state = ENEMYSTATE.CHASE;
-		//Collide & move, if collision then stop knockback
-		if (EnemyTileCollision()) 
-		{
+		// Collide & move, if collision then stop knockback
+		if (EnemyTileCollision()) {
 			x = _x; 
 			y = _y;
 			xTo = x;
@@ -178,13 +161,11 @@ function BeholderHurt()
 	}
 }
 	
-function BeholderDie() 
-{
+function BeholderDie() {
 	sprite_index = sprDie;
 	image_speed = 1.0;
 	var _distanceToGo = point_distance(x,y,xTo,yTo);
-	if (_distanceToGo > enemySpeed)
-	{
+	if (_distanceToGo > enemySpeed) {
 		dir = point_direction(x,y,xTo,yTo);
 		hSpeed = lengthdir_x(enemySpeed,dir);
 		vSpeed = lengthdir_y(enemySpeed,dir);
@@ -192,15 +173,13 @@ function BeholderDie()
 		
 		//Collide & move
 		EnemyTileCollision();
-	}
-	else
-	{
+	} else {
 		x = xTo;
 		y = yTo;	
 	}
 
-	if (image_index + (sprite_get_speed(sprite_index) / game_get_speed(gamespeed_fps)) >= image_number)
-	{
+	if (image_index + (sprite_get_speed(sprite_index) / game_get_speed(gamespeed_fps)) >= image_number) {
 		instance_destroy();	
+		PlayMainMusic();
 	}
 }

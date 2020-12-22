@@ -2,8 +2,6 @@
 /// @arg Background
 /// @arg [Responses]
 function NewTextBox() {
-
-
 	var _obj;
 	if (instance_exists(oText)) _obj = oTextQueued; else _obj = oText;
 	with (instance_create_layer(0,0,"Instances",_obj))
@@ -38,7 +36,4 @@ function NewTextBox() {
 			state = PlayerStateLocked;
 		}
 	}
-		
-
-
 }

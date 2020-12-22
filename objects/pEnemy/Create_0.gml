@@ -24,12 +24,13 @@ waitDuration = 60;
 wait = 0;
 
 //Enemy Scripts
+//Enemy Scripts
+enemyScript[ENEMYSTATE.WANDER] = EnemyWander;
+enemyScript[ENEMYSTATE.CHASE] = EnemyChase;
+enemyScript[ENEMYSTATE.ATTACK] = EnemyAttack;
+enemyScript[ENEMYSTATE.HURT] = EnemyHurt;
+enemyScript[ENEMYSTATE.DIE] = EnemyDie;
 enemyScript[ENEMYSTATE.IDLE] = -1;
-enemyScript[ENEMYSTATE.WANDER] = -1;
-enemyScript[ENEMYSTATE.CHASE] = -1;
-enemyScript[ENEMYSTATE.ATTACK] = -1;
-enemyScript[ENEMYSTATE.HURT] = -1;
-enemyScript[ENEMYSTATE.DIE] = -1;
 enemyScript[ENEMYSTATE.WAIT] = EnemyWait;
 
 
