@@ -152,6 +152,7 @@
     {"id":{"name":"sBucketBrush","path":"sprites/sBucketBrush/sBucketBrush.yy",},"order":10,},
     {"id":{"name":"sRope","path":"sprites/sRope/sRope.yy",},"order":11,},
     {"id":{"name":"shWhiteFlash","path":"shaders/shWhiteFlash/shWhiteFlash.yy",},"order":0,},
+    {"id":{"name":"sPlayerAttackDefend","path":"sprites/sPlayerAttackDefend/sPlayerAttackDefend.yy",},"order":11,},
     {"id":{"name":"tDesert","path":"tilesets/tDesert/tDesert.yy",},"order":5,},
     {"id":{"name":"fText","path":"fonts/fText/fText.yy",},"order":0,},
     {"id":{"name":"oBeholder","path":"objects/oBeholder/oBeholder.yy",},"order":2,},

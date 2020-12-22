@@ -1,4 +1,4 @@
-function CalcAttack(argument0) 
+function CalcAttack(argument0, _damage, _knockback) 
 {
 	//Use attack hitbox & check for hits
 	mask_index = argument0;
@@ -17,7 +17,7 @@ function CalcAttack(argument0)
 				{
 					if (object_is_ancestor(object_index,pEnemy)) 
 					{
-						HurtEnemy(id, 5, other.id, 10);
+						HurtEnemy(id, _damage, other.id, _knockback);
 					}
 					else if (entityHitScript != -1) script_execute(entityHitScript);
 				}
@@ -65,32 +65,47 @@ function HurtEnemy(_enemy, _damage, _source, _knockback)
 
 function AttackSlash() 
 {
-	//Attack just started
-	if (sprite_index != sPlayerAttackSlash) 
-	{
-		//Set up animation
+	// Attack just started
+	if (sprite_index != sPlayerAttackSlash) {
+		// Set up animation
 		sprite_index = sPlayerAttackSlash;
 		localFrame = 0;
 		image_index = 0;
 	
-		//Clear hit list
+		// Clear hit list
 		if (!ds_exists(hitByAttack,ds_type_list)) hitByAttack = ds_list_create(); 
 		ds_list_clear(hitByAttack);
 	}
-
-
-	CalcAttack(sPlayerAttackSlashHB);
-
-	///Update sprite
+	
+	CalcAttack(sPlayerAttackSlashHB, 5, 10);
+	// Update sprite
 	PlayerAnimateSprite();
-
-	if (animationEnd)
-	{
+	if (animationEnd) {
 		state = PlayerStateFree;
 		animationEnd = false;
 	}
+}
 
-
+function AttackDefend() {
+	invulnerable = 10;
+	// Attack just started
+	if (sprite_index != sPlayerAttackDefend) {
+		// Set up animation
+		sprite_index = sPlayerAttackDefend;
+		localFrame = 0;
+		image_index = 0;
+	
+		// Clear hit list
+		if (!ds_exists(hitByAttack,ds_type_list)) hitByAttack = ds_list_create(); 
+		ds_list_clear(hitByAttack);
+	}
+	CalcAttack(sPlayerAttackSlashHB, 1, 30);
+	// Update sprite
+	PlayerAnimateSprite();
+	if (animationEnd) {
+		state = PlayerStateFree;
+		animationEnd = false;
+	}
 }
 
 function AttackSpin() 

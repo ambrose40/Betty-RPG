@@ -8,6 +8,7 @@ keyAttack = keyboard_check_pressed(vk_control);
 keyItem = keyboard_check_pressed(vk_shift);
 keyFullScreen = keyboard_check_pressed(vk_f1);
 keyExit = keyboard_check_pressed(vk_escape);
+keyDefend = keyboard_check_pressed(vk_tab);
 inputDirection = point_direction(0,0,keyRight-keyLeft,keyDown-keyUp);
 inputMagnitude = (keyRight - keyLeft != 0) || (keyDown - keyUp != 0);
 
