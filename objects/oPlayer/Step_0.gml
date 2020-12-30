@@ -6,9 +6,10 @@ keyDown = keyboard_check(vk_down) || keyboard_check(ord("S"));
 keyActivate = keyboard_check_pressed(vk_space);
 keyAttack = keyboard_check_pressed(vk_control);
 keyItem = keyboard_check_pressed(vk_shift);
-keyFullScreen = keyboard_check_pressed(vk_f1);
+keyFullScreen = keyboard_check_pressed(vk_enter);
 keyExit = keyboard_check_pressed(vk_escape);
-keyDefend = keyboard_check_pressed(vk_tab);
+keyDefend = keyboard_check(vk_tab);
+keyRest = keyboard_check(vk_home);
 inputDirection = point_direction(0,0,keyRight-keyLeft,keyDown-keyUp);
 inputMagnitude = (keyRight - keyLeft != 0) || (keyDown - keyUp != 0);
 

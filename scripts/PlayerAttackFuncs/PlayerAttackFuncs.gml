@@ -65,6 +65,7 @@ function HurtEnemy(_enemy, _damage, _source, _knockback)
 
 function AttackSlash() 
 {
+	global.playerEnergy -= 0.005;
 	// Attack just started
 	if (sprite_index != sPlayerAttackSlash) {
 		// Set up animation
@@ -86,7 +87,49 @@ function AttackSlash()
 	}
 }
 
+function AttackRest() {
+	global.playerEnergy += 0.001;
+	global.playerHealth += 0.001;
+	
+	if (global.playerEnergy >= global.playerEnergyMax) {
+		global.playerEnergy = global.playerEnergyMax;
+	}
+	if (global.playerHealth >= global.playerHealthMax) {
+		global.playerHealth = global.playerHealthMax;
+	}
+
+	// Update sprite
+	if (keyRest) {
+		global.iRested = 0;
+	}
+
+	if (global.iRested == 1) {
+		image_speed -= 0.01;
+		z--;
+		if (z < 0) {
+			z = 0;
+			state = PlayerStateFree;
+			animationEnd = false;
+			global.iRested = 0;
+			image_speed = 0;
+		}
+	} else {
+		image_speed += 0.01;
+		z = z + 1.6;
+		
+		if (z > 15) {
+			z = 15;
+		}
+	}
+	
+	if (image_speed > 1) {
+		global.iRested = 1;
+		image_speed = 1;
+	}
+}
+
 function AttackDefend() {
+	global.playerEnergy -= 0.001;
 	invulnerable = 10;
 	// Attack just started
 	if (sprite_index != sPlayerAttackDefend) {

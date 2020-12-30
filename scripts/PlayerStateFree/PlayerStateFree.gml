@@ -11,11 +11,17 @@ function PlayerStateFree() {
 	{
 		direction = inputDirection
 		sprite_index = spriteRun;
+		global.playerEnergy -= 0.0001;
 	} else sprite_index = spriteIdle;
 	if (_oldSprite != sprite_index) localFrame = 0;
 
 	//Update Image Index
 	PlayerAnimateSprite();
+
+	if (keyRest) {
+		state = PlayerStateAttack;
+		stateAttack = AttackRest;
+	}
 
 	if (keyDefend) {
 		state = PlayerStateAttack;

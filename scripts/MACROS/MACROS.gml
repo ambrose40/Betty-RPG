@@ -5,7 +5,7 @@ function MACROS() {
 	#macro ROOM_START rBeach
 
 	#macro RESOLUTION_W 320	
-	#macro RESOLUTION_H 160
+	#macro RESOLUTION_H 180
 
 	#macro RESOLUTION_W_S RESOLUTION_W * 1
 	#macro RESOLUTION_H_S RESOLUTION_H * 1

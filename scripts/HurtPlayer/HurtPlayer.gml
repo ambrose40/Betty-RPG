@@ -18,6 +18,7 @@ function HurtPlayer(_direction, _force, _damage) {
 				flashShader = shRedFlash;
 			}
 		} else {
+			global.deathReason = "Killed by " + global.lastEnemyHurt;
 			with (oPlayer) state = PlayerStateDead;
 		}
 	}

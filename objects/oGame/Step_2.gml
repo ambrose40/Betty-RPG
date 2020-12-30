@@ -1,7 +1,7 @@
 /// @desc Pause the Game
 
 
-if (keyboard_check_pressed(vk_pause)) {
+if (keyboard_check_pressed(vk_pause) && global.iMap == 0) {
 	global.gamePaused = !global.gamePaused;
 	if (global.gamePaused) {
 		with (all) {
@@ -30,5 +30,14 @@ if (global.gamePaused) {
 		if (z > 0) {
 			z--;
 		}
+	}
+	
+	if (global.playerHealth <= 0) {
+		with (oPlayer) state = PlayerStateDead;
+	}
+	
+	if (global.playerEnergy <= 0) {
+		global.deathReason = "Exhausted energy"
+		with (oPlayer) state = PlayerStateDead;
 	}
 }
