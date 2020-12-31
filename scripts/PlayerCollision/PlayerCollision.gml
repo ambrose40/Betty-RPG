@@ -18,7 +18,7 @@ function PlayerCollision() {
 		while (_entityCount > 0)
 		{
 			var _entityCheck = _entityList[| 0];
-			if (_entityCheck.entityCollision == true && _entityCheck != global.iLifted)
+			if (_entityCheck.entityCollision == true && _entityCheck != global.iLifted && _entityCheck != id)
 			{
 				//Move as close as we can
 				if (sign(hSpeed) == -1) _snapX = _entityCheck.bbox_right+1;
@@ -51,7 +51,7 @@ function PlayerCollision() {
 		while (_entityCount > 0)
 		{
 			var _entityCheck = _entityList[| 0];
-			if (_entityCheck.entityCollision == true && _entityCheck != global.iLifted)
+			if (_entityCheck.entityCollision == true && _entityCheck != global.iLifted && _entityCheck != id)
 			{
 				//Move as close as we can
 				if (sign(vSpeed) == -1) _snapY = _entityCheck.bbox_bottom+1;

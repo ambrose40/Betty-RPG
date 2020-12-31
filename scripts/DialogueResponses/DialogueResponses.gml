@@ -1,8 +1,6 @@
 /// @arg Response
 function DialogueResponses(argument0) {
-
-	switch(argument0)
-	{
+	switch(argument0) {
 		case 0: break;
 		case 1: NewTextBox("Ahoy!", 1); break;
 		case 2: NewTextBox("Eye! Eye!", 1); break;
@@ -13,6 +11,4 @@ function DialogueResponses(argument0) {
 		case 7: NewTextBox("Not at the moment. \nCheck back later.", 1); break;
 		default: break;
 	}
-
-
 }

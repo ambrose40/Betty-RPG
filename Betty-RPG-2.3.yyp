@@ -90,6 +90,7 @@
     {"id":{"name":"oDryTreeBig","path":"objects/oDryTreeBig/oDryTreeBig.yy",},"order":1,},
     {"id":{"name":"oAnchor","path":"objects/oAnchor/oAnchor.yy",},"order":9,},
     {"id":{"name":"tGrassland","path":"tilesets/tGrassland/tGrassland.yy",},"order":7,},
+    {"id":{"name":"sEnergyBar","path":"sprites/sEnergyBar/sEnergyBar.yy",},"order":6,},
     {"id":{"name":"sPlayerDead","path":"sprites/sPlayerDead/sPlayerDead.yy",},"order":7,},
     {"id":{"name":"sSail","path":"sprites/sSail/sSail.yy",},"order":2,},
     {"id":{"name":"sPikesSmall3","path":"sprites/sPikesSmall3/sPikesSmall3.yy",},"order":8,},

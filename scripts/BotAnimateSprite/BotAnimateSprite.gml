@@ -9,10 +9,7 @@ function BotAnimateSprite() {
 	{
 		animationEnd = true;	
 		localFrame -= _totalFrames;
-	}else animationEnd = false;
-
-
-
-
-
+	} else {
+		animationEnd = false;
+	}
 }

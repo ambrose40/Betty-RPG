@@ -88,7 +88,7 @@ function AttackSlash()
 }
 
 function AttackRest() {
-	global.playerEnergy += 0.001;
+	global.playerEnergy += 0.003;
 	global.playerHealth += 0.001;
 	
 	if (global.playerEnergy >= global.playerEnergyMax) {
