@@ -14,7 +14,7 @@ function PlayDeathMusic(){
 		audio_stop_sound(mMap);
 	}
 	if !audio_is_playing(mMenu1) {
-		audio_play_sound(mMenu1, 1000, true);
+		global.snd = audio_play_sound(mMenu1, 1000, true);
 	}
 }
 
@@ -32,7 +32,7 @@ function PlayMainMusic(){
 		audio_stop_sound(mMap);
 	}
 	if !audio_is_playing(mMain) {
-		audio_play_sound(mMain, 1000, true);
+		global.snd = audio_play_sound(mMain, 1000, true);
 	}
 }
 
@@ -50,7 +50,7 @@ function PlayBattleMusic(){
 		audio_stop_sound(mMap);
 	}
 	if !audio_is_playing(mBattle) {
-		audio_play_sound(mBattle, 1000, true);
+		global.snd = audio_play_sound(mBattle, 1000, true);
 	}
 }
 
@@ -68,7 +68,7 @@ function PlayLockedMusic(){
 		audio_stop_sound(mMap);
 	}
 	if !audio_is_playing(mTrader) {
-		audio_play_sound(mTrader, 1000, true);
+		global.snd = audio_play_sound(mTrader, 1000, true);
 	}
 }
 
@@ -86,6 +86,6 @@ function PlayMapMusic(){
 		audio_stop_sound(mTrader);
 	}
 	if !audio_is_playing(mMap) {
-		audio_play_sound(mMap, 1000, true);
+		global.snd = audio_play_sound(mMap, 1000, true);
 	}
 }

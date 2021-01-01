@@ -61,7 +61,7 @@ function DrawHelp(text, oX, oY, w, h) {
 	draw_set_alpha(0.666);
 	draw_set_colour(c_white);
 	draw_rectangle(oX - w / 2, oY - h / 2, oX + w / 2, oY + h / 2, false);
-	draw_set_font(fText)
+	draw_set_font(fText10)
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_top);
 	draw_set_colour(c_black);

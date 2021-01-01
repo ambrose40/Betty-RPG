@@ -131,7 +131,7 @@
     "path": "folders/Fonts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "fText11",
+  "name": "fText10",
   "tags": [],
   "resourceType": "GMFont",
 }

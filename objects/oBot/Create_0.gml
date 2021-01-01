@@ -37,3 +37,14 @@ spriteRoll = sBotRoll;
 spriteRun = sBotRun;
 spriteIdle = sBot;
 localFrame = 0;
+
+targetX = -1;
+targetY = -1;
+targetDirection = -1;
+
+if (global.targetXBot != -1)
+{
+	x = global.targetXBot;
+	y = global.targetYBot;
+	direction = global.targetDirectionBot;
+}

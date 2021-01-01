@@ -4,16 +4,16 @@ if (global.iMap == 0) {
 	global.lastY = oPlayer.y;
 	global.lastRoom = room;
 	global.targetRoom = rMap;
-	global.targetDirection = oPlayer.direction;
+	global.targetDirectionPlayer = oPlayer.direction;
 	if (global.lastRoom == rBeach) {
-		global.targetX = 216;
-		global.targetY = 176;
+		global.targetXPlayer = 216;
+		global.targetYPlayer = 176;
 	} else if (global.lastRoom == rBeachCamp) {
-		global.targetX = 304;
-		global.targetY = 232;
+		global.targetXPlayer = 304;
+		global.targetYPlayer = 232;
 	} else if (global.lastRoom == rBeachShip) {
-		global.targetX = 128;
-		global.targetY = 176;
+		global.targetXPlayer = 128;
+		global.targetYPlayer = 176;
 	}
 	room_goto(rMap);
 	global.iMap = 1;
@@ -21,8 +21,8 @@ if (global.iMap == 0) {
 	PlayMapMusic();
 } else {
 	global.gamePaused = false;
-	global.targetX = global.lastX;
-	global.targetY = global.lastY;
+	global.targetXPlayer = global.lastX;
+	global.targetYPlayer = global.lastY;
 	room_goto(global.lastRoom);
 	global.iMap = 0;
 	global.lastRoom = -1;

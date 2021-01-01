@@ -20,6 +20,9 @@ distanceBonk = 40;
 distanceBonkHeight = 12;
 z = 0;
 
+lifted = 0;
+thrown = false;
+
 // Taking damage
 invulnerable = 0;
 flash = 0;
@@ -31,10 +34,3 @@ spriteRoll = sPlayerRoll;
 spriteRun = sPlayerRun;
 spriteIdle = sPlayer;
 localFrame = 0;
-
-if (global.targetX != -1)
-{
-	x = global.targetX;
-	y = global.targetY;
-	direction = global.targetDirection;
-}

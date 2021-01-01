@@ -1,7 +1,7 @@
 /// @desc Progress Transition
 
 with (oPlayer) {
-	if (state != PlayerStateDead) state = PlayerStateTransition;
+	// if (state != PlayerStateDead) state = PlayerStateTransition;
 }
 
 if (leading == OUT) {

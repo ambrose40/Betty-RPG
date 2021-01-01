@@ -68,7 +68,7 @@ if (global.gamePaused) && (global.iMap == 0) {
 	DrawCaption("PAUSE", "", RESOLUTION_W / 2, RESOLUTION_H / 2, 100, 40);
 } else if (global.iMap == 1) {
 	DrawCaption("MAP", GetRoomName(global.lastRoom), RESOLUTION_W / 2, RESOLUTION_H / 2, 100, 40);
-} else if (oPlayer.state == PlayerStateDead) {
+} else if (!global.gamePaused && instance_exists(oPlayer) && oPlayer.state == PlayerStateDead) {
 	DrawCaption("GAME OVER", global.deathReason, RESOLUTION_W / 2, RESOLUTION_H / 2, 100, 40);
 }
 // Show recording caption
@@ -77,5 +77,10 @@ if (oGame.gifRecord) {
 }
 // Show help
 if (keyboard_check(vk_f1)) {
-	DrawHelp("F1 - Help\nM - Map\nR - Restart game\nT - Show mission\nCtrl - Main attack\nTab - Defence\nHome - Meditate\nSpace - Roll/Skip\n\nHealth: " + string(global.playerHealth) + "\nEnergy: " + string(global.playerEnergy),  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
+	DrawHelp("F1 - Help\nF4 - Save screenshot\nG - Record GIF\nM - Map\nR - Restart game\nT - Show mission\nCtrl - Main attack\nTab - Defence\nHome - Meditate\nSpace - Roll/Skip",  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
+}
+
+// Show stats
+if (keyboard_check(ord("C"))) {
+	DrawHelp("Health: " + string(global.playerHealth) + "\nEnergy: " + string(global.playerEnergy),  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
 }

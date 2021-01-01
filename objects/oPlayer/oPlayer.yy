@@ -9,7 +9,7 @@
     "name": "sPlayer",
     "path": "sprites/sPlayer/sPlayer.yy",
   },
-  "persistent": false,
+  "persistent": true,
   "parentObjectId": {
     "name": "pEntity",
     "path": "objects/pEntity/pEntity.yy",

@@ -1,6 +1,5 @@
 /// @desc Pause the Game
 
-
 if (keyboard_check_pressed(vk_pause) && global.iMap == 0) {
 	global.gamePaused = !global.gamePaused;
 	if (global.gamePaused) {
@@ -24,7 +23,6 @@ if (global.gamePaused) {
 			z++;
 		}
 	}
-	
 } else {
 	with (oPlayer) {
 		if (z > 0) {
@@ -41,3 +39,5 @@ if (global.gamePaused) {
 		with (oPlayer) state = PlayerStateDead;
 	}
 }
+
+audio_sound_gain(global.snd, global.volume, 0);
