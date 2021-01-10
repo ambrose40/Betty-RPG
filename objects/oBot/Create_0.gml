@@ -15,6 +15,15 @@ uRColor = shader_get_uniform(shWhiteFlash,"r_color");
 uGColor = shader_get_uniform(shWhiteFlash,"g_color");
 uBColor = shader_get_uniform(shWhiteFlash,"b_color");
 
+liftZ[0] = 13;
+liftZ[1] = 14;
+liftZ[2] = 15;
+liftZ[3] = 14;
+liftZ[4] = 13;
+liftZ[5] = 14;
+liftZ[6] = 15;
+liftZ[7] = 14;
+
 collisionMap = layer_tilemap_get_id(layer_get_id("Col"));
 depth = -1000;
 image_speed = 0;

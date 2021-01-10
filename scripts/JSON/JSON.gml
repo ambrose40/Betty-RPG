@@ -12,10 +12,8 @@ function SaveGame(filename) {
 	var _saveData = array_create(0);
 	
 	//for every instance, create a struct and add it to the array
-	with (pEntity)
-	{
-		var _saveEntity = 
-		{
+	with (pEntity) {
+		var _saveEntity =  {
 			obj : object_get_name(object_index),
 			y : y,
 			x : x,

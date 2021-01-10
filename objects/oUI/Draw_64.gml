@@ -63,7 +63,6 @@ for (var i = 1; i <= _playerEnergyMax; i++) {
 	draw_sprite(sEnergy, _imageIndex, RESOLUTION_W - ((_playerEnergyMax - i) * 14) - 24, 8);
 }
 
-// Draw captions
 if (global.gamePaused) && (global.iMap == 0) {
 	DrawCaption("PAUSE", "", RESOLUTION_W / 2, RESOLUTION_H / 2, 100, 40);
 } else if (global.iMap == 1) {
@@ -71,6 +70,7 @@ if (global.gamePaused) && (global.iMap == 0) {
 } else if (!global.gamePaused && instance_exists(oPlayer) && oPlayer.state == PlayerStateDead) {
 	DrawCaption("GAME OVER", global.deathReason, RESOLUTION_W / 2, RESOLUTION_H / 2, 100, 40);
 }
+
 // Show recording caption
 if (oGame.gifRecord) {
 	DrawCaption("REC", "*", RESOLUTION_W - 35, RESOLUTION_H - 15, 55, 25);

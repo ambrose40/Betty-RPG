@@ -13,6 +13,9 @@ global.targetYBot = -1;
 global.targetDirectionBot = 0;
 global.gameLoaded = false;
 
+global.questStatus = ds_map_create();
+global.questStatus[? "TheHatQuest"] = 0;
+
 screenShot = -1;
 global.lastX = -1;
 global.lastY = -1;

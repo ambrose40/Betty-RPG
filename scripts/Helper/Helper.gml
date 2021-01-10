@@ -54,7 +54,7 @@ function DrawCaption(text, subText, oX, oY, w, h) {
 		draw_set_font(fText11)
 		draw_text(oX, oY + h / 8, subText);
 	}
-	draw_set_alpha(1);
+	draw_set_alpha(1.0);
 }
 
 function DrawHelp(text, oX, oY, w, h) {
@@ -66,7 +66,7 @@ function DrawHelp(text, oX, oY, w, h) {
 	draw_set_valign(fa_top);
 	draw_set_colour(c_black);
 	draw_text(oX, oY - h / 2, text);
-	draw_set_alpha(1);
+	draw_set_alpha(1.0);
 }
 
 function GetRoomName(room) {

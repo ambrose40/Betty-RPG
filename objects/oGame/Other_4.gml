@@ -5,10 +5,10 @@ if (instance_exists(oPlayer)) {
 	show_debug_message("Enter: " + string(oPlayer.y));
 }
 global.iCamera = instance_create_layer(0,0,layer,oCamera);
-global.iUi = instance_create_layer(0,0,layer,oUI);
+// global.iUi = instance_create_layer(0,0,layer,oUI);
 
 layer_set_visible("Col", false);
-
+PlayMainMusic();
 /// @description Save Room state
 if (global.iMap == 0) {
 	var roomname = room_get_name(room);
