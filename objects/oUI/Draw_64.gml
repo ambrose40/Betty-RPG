@@ -6,11 +6,9 @@ var _playerHealthMax = global.playerHealthMax;
 var _playerHealthFrac = frac(_playerHealth);
 _playerHealth -= _playerHealthFrac;
 
-for (var i = 1; i <= _playerHealthMax; i++) 
-{
+for (var i = 1; i <= _playerHealthMax; i++) {
 	var _imageIndex = (i > _playerHealth);
-	if (i == _playerHealth + 1) 
-	{
+	if (i == _playerHealth + 1) {
 		_imageIndex += (_playerHealthFrac > 0);
 		_imageIndex += (_playerHealthFrac > 0.25);
 		_imageIndex += (_playerHealthFrac > 0.5);
@@ -82,5 +80,5 @@ if (keyboard_check(vk_f1)) {
 
 // Show stats
 if (keyboard_check(ord("C"))) {
-	DrawHelp("Health: " + string(global.playerHealth) + "\nEnergy: " + string(global.playerEnergy),  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
+	DrawHelp("Coins: " + string(oPlayer.coinsAmount) + "\nHealth: " + string(global.playerHealth) + "\nEnergy: " + string(global.playerEnergy),  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
 }

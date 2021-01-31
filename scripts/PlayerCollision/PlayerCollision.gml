@@ -15,11 +15,14 @@ function PlayerCollision() {
 		//Horizontal Entities
 		var _entityCount = instance_position_list(x+hSpeed,y,pEntity,_entityList,false);
 		var _snapX;
-		while (_entityCount > 0)
-		{
+		while (_entityCount > 0) {
 			var _entityCheck = _entityList[| 0];
-			if (_entityCheck.entityCollision == true && _entityCheck != global.iLifted && _entityCheck != id)
-			{
+			if (
+				_entityCheck.entityCollision == true && 
+				_entityCheck.visible && 
+				_entityCheck != global.iLifted && 
+				_entityCheck != id
+			) {
 				//Move as close as we can
 				if (sign(hSpeed) == -1) _snapX = _entityCheck.bbox_right+1;
 				else _snapX = _entityCheck.bbox_left-1;
@@ -37,8 +40,7 @@ function PlayerCollision() {
 		x += hSpeed;
 
 		//Vertical Tiles
-		if (tilemap_get_at_pixel(collisionMap, x, y + vSpeed))
-		{
+		if (tilemap_get_at_pixel(collisionMap, x, y + vSpeed)) {
 			y -= y mod TILE_SIZE;	
 			if (sign(vSpeed) == 1) y += TILE_SIZE - 1;
 			vSpeed = 0;
@@ -48,11 +50,14 @@ function PlayerCollision() {
 		//Vertical Entities
 		var _entityCount = instance_position_list(x,y+vSpeed,pEntity,_entityList,false);
 		var _snapY;
-		while (_entityCount > 0)
-		{
+		while (_entityCount > 0) {
 			var _entityCheck = _entityList[| 0];
-			if (_entityCheck.entityCollision == true && _entityCheck != global.iLifted && _entityCheck != id)
-			{
+			if (
+				_entityCheck.entityCollision == true && 
+				_entityCheck.visible && 
+				_entityCheck != global.iLifted && 
+				_entityCheck != id
+			) {
 				//Move as close as we can
 				if (sign(vSpeed) == -1) _snapY = _entityCheck.bbox_bottom+1;
 				else _snapY = _entityCheck.bbox_top-1;

@@ -19,3 +19,4 @@ liftZ[4] = 13;
 liftZ[5] = 14;
 liftZ[6] = 15;
 liftZ[7] = 14;
+entityDropList = -1;

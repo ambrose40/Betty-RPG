@@ -1,22 +1,16 @@
-function CalcAttack(argument0, _damage, _knockback) 
-{
+function CalcAttack(argument0, _damage, _knockback) {
 	//Use attack hitbox & check for hits
 	mask_index = argument0;
 	var hitByAttackNow = ds_list_create()
 	var hits = instance_place_list(x,y,pEntity,hitByAttackNow,false);
-	if (hits > 0)
-	{
-		for (var i = 0; i < hits; i++)
-		{
+	if (hits > 0) {
+		for (var i = 0; i < hits; i++) {
 			//if this instance has not yet been hit by this attack, hit it
 			var hitID = hitByAttackNow[| i]
-			if (ds_list_find_index(hitByAttack,hitID) == -1)
-			{
+			if (ds_list_find_index(hitByAttack,hitID) == -1) {
 				ds_list_add(hitByAttack,hitID);
-				with (hitID)
-				{
-					if (object_is_ancestor(object_index,pEnemy)) 
-					{
+				with (hitID) {
+					if (object_is_ancestor(object_index,pEnemy)) {
 						HurtEnemy(id, _damage, other.id, _knockback);
 					}
 					else if (entityHitScript != -1) script_execute(entityHitScript);
@@ -33,38 +27,30 @@ function HurtEnemy(_enemy, _damage, _source, _knockback)
 	if (oPlayer.state != PlayerStateDead) {
 		PlayBattleMusic();
 	}
-	with (_enemy)
-	{
-		if (state != ENEMYSTATE.DIE)
-		{
+	with (_enemy) {
+		if (state != ENEMYSTATE.DIE) {
 			enemyHP -= _damage;
 			flash = 1;
 	
 			//Hurt or dead?
-			if (enemyHP <= 0) 
-			{
+			if (enemyHP <= 0) {
 				state = ENEMYSTATE.DIE;
-			}
-			else
-			{
+			} else {
 				if (state != ENEMYSTATE.HURT) statePrevious = state;
 				state = ENEMYSTATE.HURT;
 			}
 
 			image_index = 0;
-			if (_knockback != 0)
-			{
+			if (_knockback != 0) {
 				var _knockDirection = point_direction(x,y,(_source).x,(_source).y);
 				xTo = x - lengthdir_x(_knockback,_knockDirection);
 				yTo = y - lengthdir_y(_knockback,_knockDirection);
 			}
-
 		}
 	}
 }
 
-function AttackSlash() 
-{
+function AttackSlash() {
 	global.playerEnergy -= 0.005;
 	// Attack just started
 	if (sprite_index != sPlayerAttackSlash) {
@@ -151,10 +137,7 @@ function AttackDefend() {
 	}
 }
 
-function AttackSpin() 
-{
-
-
-
+function AttackSpin() {
+// TODO: Implement another spinning attack procedure
 }
 

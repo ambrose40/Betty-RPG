@@ -93,6 +93,7 @@
     {"id":{"name":"oAnchor","path":"objects/oAnchor/oAnchor.yy",},"order":9,},
     {"id":{"name":"tGrassland","path":"tilesets/tGrassland/tGrassland.yy",},"order":7,},
     {"id":{"name":"sEnergyBar","path":"sprites/sEnergyBar/sEnergyBar.yy",},"order":6,},
+    {"id":{"name":"pCollectible","path":"objects/pCollectible/pCollectible.yy",},"order":39,},
     {"id":{"name":"sPlayerDead","path":"sprites/sPlayerDead/sPlayerDead.yy",},"order":7,},
     {"id":{"name":"sSail","path":"sprites/sSail/sSail.yy",},"order":2,},
     {"id":{"name":"sPikesSmall3","path":"sprites/sPikesSmall3/sPikesSmall3.yy",},"order":8,},
@@ -214,6 +215,7 @@
     {"id":{"name":"oDryTree","path":"objects/oDryTree/oDryTree.yy",},"order":0,},
     {"id":{"name":"QuestHelper","path":"scripts/QuestHelper/QuestHelper.yy",},"order":24,},
     {"id":{"name":"sHat","path":"sprites/sHat/sHat.yy",},"order":12,},
+    {"id":{"name":"oCoin","path":"objects/oCoin/oCoin.yy",},"order":40,},
     {"id":{"name":"oPalmSmallC","path":"objects/oPalmSmallC/oPalmSmallC.yy",},"order":6,},
     {"id":{"name":"oRockParent","path":"objects/oRockParent/oRockParent.yy",},"order":0,},
     {"id":{"name":"oPikesSmall1","path":"objects/oPikesSmall1/oPikesSmall1.yy",},"order":1,},
@@ -222,6 +224,7 @@
     {"id":{"name":"rInit","path":"rooms/rInit/rInit.yy",},"order":0,},
     {"id":{"name":"oSkullPike","path":"objects/oSkullPike/oSkullPike.yy",},"order":4,},
     {"id":{"name":"rParent","path":"rooms/rParent/rParent.yy",},"order":1,},
+    {"id":{"name":"sCoin","path":"sprites/sCoin/sCoin.yy",},"order":51,},
     {"id":{"name":"rBeach","path":"rooms/rBeach/rBeach.yy",},"order":0,},
   ],
   "Options": [
