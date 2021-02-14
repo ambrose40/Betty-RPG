@@ -12,4 +12,4 @@ enemyScript[ENEMYSTATE.ATTACK] = EnemyAttack;
 enemyScript[ENEMYSTATE.HURT] = EnemyHurt;
 enemyScript[ENEMYSTATE.DIE] = EnemyDie;
 
-entityDropList = [oCoin, oCoin, oCoin, oCoin, oCoin, oCoin, oCoin, oCoin, oCoin, oCoin];
+entityDropList = array_create(25, oCoin);

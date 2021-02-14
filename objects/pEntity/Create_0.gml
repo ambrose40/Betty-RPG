@@ -6,10 +6,12 @@ g_color = 0;
 b_color = 0;
 lifted = 0;
 thrown = false;
-uFlash = shader_get_uniform(shWhiteFlash,"flash");
-uRColor = shader_get_uniform(shWhiteFlash,"r_color");
-uGColor = shader_get_uniform(shWhiteFlash,"g_color");
-uBColor = shader_get_uniform(shWhiteFlash,"b_color");
+flashShader = shWhiteFlash;
+
+uFlash = shader_get_uniform(flashShader,"flash");
+uRColor = shader_get_uniform(flashShader,"r_color");
+uGColor = shader_get_uniform(flashShader,"g_color");
+uBColor = shader_get_uniform(flashShader,"b_color");
 
 liftZ[0] = 13;
 liftZ[1] = 14;

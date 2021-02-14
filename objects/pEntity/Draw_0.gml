@@ -3,7 +3,11 @@ if (entityShadow) draw_sprite(sShadow,0,floor(x),floor(y));
 
 if (flash != 0)
 {
-	shader_set(shWhiteFlash);
+	shader_set(flashShader);
+	uFlash = shader_get_uniform(flashShader, "flash");
+	uRColor = shader_get_uniform(flashShader, "r_color");
+	uGColor = shader_get_uniform(flashShader, "g_color");
+	uBColor = shader_get_uniform(flashShader, "b_color");
 	shader_set_uniform_f(uFlash, flash);
 	shader_set_uniform_f(uRColor, r_color);
 	shader_set_uniform_f(uGColor, g_color);

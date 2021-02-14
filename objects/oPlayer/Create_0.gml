@@ -30,7 +30,7 @@ flashShader = shWhiteFlash;
 
 animationEndScript = -1;
 
-coinsAmount = 666;
+coinsAmount = 0;
 
 spriteRoll = sPlayerRoll;
 spriteRun = sPlayerRun;
