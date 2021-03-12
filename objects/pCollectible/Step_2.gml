@@ -19,7 +19,7 @@ if (instance_exists(oPlayer) && oPlayer.state != PlayerStateDead) {
 			} else {
 				if (collectScript != -1) script_execute(collectScript);
 			}
-			oPlayer.coinsAmount += 1;
+			
 			instance_destroy();
 		}
 	}

@@ -11,6 +11,8 @@ if (!global.gamePaused) {
 				with (_entity) {
 					if (object_is_ancestor(object_index, pEnemy)) {
 						HurtEnemy(id, 250, other.id, 20);
+					} else if (object_is_ancestor(object_index, oPlayer)) {
+						HurtPlayer(point_direction(x, y, oPlayer.x, oPlayer.y), 64, 3);
 					} else {
 						if (entityHitScript != -1) script_execute(entityHitScript);
 					}
