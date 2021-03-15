@@ -26,6 +26,19 @@ global.playerHealth = global.playerHealthMax;
 global.lastEnemyHurt = ""
 global.playerEnergyMax = 3;
 global.playerEnergy = global.playerEnergyMax;
+
+//Items
+global.playerHasAnyItems = false;
+global.playerEquipped = ITEM.BOMB;
+global.playerAmmo = array_create(ITEM.TYPE_COUNT, -1);
+global.playerItemUnlocked = array_create(ITEM.TYPE_COUNT, false);
+global.playerAmmo[ITEM.BOMB] = 0;
+global.playerAmmo[ITEM.BOW] = 0;
+
+global.playerItemUnlocked[ITEM.BOMB] = true;
+global.playerHasAnyItems = true;
+global.playerAmmo[ITEM.BOMB] = 5;
+
 gifRecord = false;
 global.iRested = 0;
 global.iLifted = noone;
@@ -40,5 +53,3 @@ display_set_gui_size(RESOLUTION_W, RESOLUTION_H);
 global.iCamera = instance_create_layer(0,0,layer,oCamera);
 global.iUi = instance_create_layer(0,0,layer,oUI);
 room_goto(ROOM_START);
-
-global.volume = 0;
