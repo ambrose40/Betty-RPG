@@ -1,8 +1,17 @@
 function PlayerStateDead() {
 	if (sprite_index != sPlayerDie && sprite_index != sPlayerDead) {
 		PlayDeathMusic();
-		var array = array_create(oPlayer.coinsAmount, oCoin);
-		DropItems(x, y, array);
+		if (oPlayer.coinsAmount > 0) {
+			var _array = array_create(oPlayer.coinsAmount, oCoin);
+			DropItems(x, y, _array);
+		} 
+		
+		if (global.playerAmmo[ITEM.BOMB] > 0) {
+			var _array = array_create(global.playerAmmo[ITEM.BOMB], oBombDrop);
+			DropItems(x, y, _array);
+			global.playerAmmo[ITEM.BOMB] = 0;
+		} 
+		
 	}
 	hSpeed = 0;
 	vSpeed = 0;

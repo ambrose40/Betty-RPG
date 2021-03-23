@@ -39,6 +39,9 @@ global.playerItemUnlocked[ITEM.BOMB] = true;
 global.playerHasAnyItems = true;
 global.playerAmmo[ITEM.BOMB] = 5;
 
+global.playerItemUnlocked[ITEM.BOW] = true;
+global.playerAmmo[ITEM.BOW] = 15;
+
 gifRecord = false;
 global.iRested = 0;
 global.iLifted = noone;

@@ -10,6 +10,10 @@ keyFullScreen = keyboard_check_pressed(vk_enter);
 keyExit = keyboard_check_pressed(vk_escape);
 keyDefend = keyboard_check(vk_end);
 keyRest = keyboard_check(vk_home);
+
+keyItemSelectUp = keyboard_check_pressed(ord("E"));
+keyItemSelectDown = keyboard_check_pressed(ord("Q"));
+
 inputDirection = point_direction(0,0,keyRight-keyLeft,keyDown-keyUp);
 inputMagnitude = (keyRight - keyLeft != 0) || (keyDown - keyUp != 0);
 
