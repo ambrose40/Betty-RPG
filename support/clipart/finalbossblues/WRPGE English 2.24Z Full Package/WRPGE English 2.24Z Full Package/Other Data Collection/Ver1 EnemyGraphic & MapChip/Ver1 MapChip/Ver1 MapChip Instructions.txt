@@ -1,0 +1,10 @@
+1. Put all image files in the "MapChip" folder in the Data folder.
+2. Open the Editor and select the appropriate blank from the list on the left in "Tileset Settings".
+3. Name it "Ver1MapChip" or whatever you want to call it.
+4. Load "BaseChip_ver1" to the Base Tileset File.
+5. Load all the other files as Auto-Tile Files.
+6. Apply the appropriate properties to the tiles you are going to use.
+7. When you actually want to use the tiles on a map, please select "Ver1MapChip"(or whatever you called it)
+   from the "Map Settings" to apply them to your current map.
+
+That is all you need to do.

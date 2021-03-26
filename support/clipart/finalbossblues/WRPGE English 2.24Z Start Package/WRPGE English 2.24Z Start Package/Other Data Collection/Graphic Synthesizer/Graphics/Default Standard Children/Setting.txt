@@ -1,0 +1,33 @@
+# Xsize:??? and Ysize:??? define the size of the generated image.
+#
+# The rest defines how the parts in each folder
+# are ordered on each other; that is, their "height."
+# Note that when "HeadA.png" is loaded, "HeadA$.png" is auto-loaded as well and added in the back.
+#
+# Example:
+#  If "Head=2 Upper Body=1 Lower Body=0",
+#  it is drawn in the order "Head > Upper Body > Lower Body > Lower Body (with $) > Upper Body (with $) > Head (with %)."
+#  Put the names of each folder before the "=" signs.
+#
+# If you put a "#" at the start of a line, it is treated as a comment.
+
+# As of the 5/11/2010 version, by entering [,F] or [,B] after the number in Folder Settings,
+# such as "Head=3,F", you can make hue changes only affect Front images [those without a $]
+# or Back images [those with a $]. (* Saturation applies to both front and back.)
+# 
+
+
+# Image Size Settings
+Xsize:120
+Ysize:112
+
+
+# Folder Settings
+Head=3,F
+Eyes=1
+Torso=0
+Added=2
+Head Add=4
+Accessory=5
+Accessory=6
+Accessory=7

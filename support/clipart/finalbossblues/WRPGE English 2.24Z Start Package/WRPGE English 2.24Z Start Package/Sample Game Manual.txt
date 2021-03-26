@@ -1,0 +1,163 @@
+===================================
+    WOLF RPG Editor Sample Game
+               Manual
+
+            06/01/2018
+===================================
+
+|Opening|
+
+  This is an RPG made with WOLF RPG Editor as a sample game.
+  You can start the game by running "Game.exe."
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+|Basic Controls|
+
+  You can use any of the keys listed for each function.
+
+  [Z] [Enter] [Space] ...
+    The Confirm Button. Use to confirm choices or advance dialogue.
+  [X] [Backspace] [Insert] [Numpad 0 (when NumLock is on)] ...
+    The Cancel Button. Also calls the menu.
+  [C] [Shift] ... The Sub Button. Hold during battles to speed them up (in the Base System).
+  [Arrow Keys] ... Use to select commands and choices.
+  [F4] ... Change Screen Size
+  [F11] ... Toggle Full Screen
+  [F12] ... Reset Game
+  [PrintScreen] ... Take Screenshot
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+|On Saving and Quitting the Game|
+
+  You can save by selecting the "Save" command from the menu.
+  To quit the  game, press Alt+F4.
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+|Update Log|
+06/01/2018  Fixed broken links/transfers for resource sources.
+07/18/2011  Major changes to resources with Ver. 2.00 update. Thank you very much to everyone who contributed.
+10/10/2010  Replaced sample enemy graphics with GD's.
+11/18/2009  Add sample image resources.
+09/25/2009  Changed all files to English filenames.
+07/27/2009  Minor fixes, included Isooki's enemy graphics.
+02/20/2009  Greatly improved map chip resources.
+11/30/2008  Changed resource rights for MIDIs to "can reuse only."
+09/02/2008  Changed all characters to 8-directional and added character-creation tool to "Other Data Collection" folder.
+03/15/2008  Generally remade, added to default system.
+11/05/2007  Added controls guide.
+04/12/2007  Release.
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+|Resources Used|
+
+-Character Graphic Resources
+  Suu (http://su-labo.sakura.ne.jp/)[Japanese]
+  pochi (Helped make 8-direction versions and parts + Animal and monster character sprites)
+  mel ("Ship Graphics" character resource included with sample)
+  Ouroboros (Camp graphics included with sample, tons of map sprites, monster character sprites)
+  Tapisu (Character sprites), Makiba (Character sprites)
+
+-Map Graphic Resources
+ Pipo (http://piposozai.blog76.fc2.com/)[Japanese but it seems to have a Google Translate extension]
+
+-Enemy Character Resources
+  GD (From WOLF RPG Editor Wiki)
+  * When using these resources, you must include the creator's name.
+    When "using them as-is" or "modifying them to distribute as resources,"
+    please note the creator's name.
+
+-MIDI Resources (Filenames have been changed for convenience)
+  Takumi (http://www.symphonic-net.com/takumi/)[Japanese]
+  Yuno
+  Kagamiyomi (From WOLF RPG Editor Wiki)
+  Koya (https://koyakon.net/)[Japanese]
+  yaeko (From WOLF RPG Editor Wiki)
+  Kuro Usagi (From WOLF RPG Editor Wiki)
+  Dobato (From WOLF RPG Editor Wiki)
+  momi (From WOLF RPG Editor Wiki)
+
+-Sound Effect Resources (Filenames have been changed for convenience)
+  panop (http://panoply.xxxxxxxx.jp/)[Japanese]
+  Taira Komori (http://www.taira-komori.jpn.org/)[Japanese but it seems to have a Google Translate extension]
+  Koya (https://koyakon.net/)[Japanese]
+  Isooki (From WOLF RPG Editor Wiki)
+  Kukuri (From WOLF RPG Editor Wiki)
+
+-Icon Resources
+  Karekusa (From WOLF RPG Editor Resource Thread)
+
+-Battle Animation Effects
+  panop (http://panoply.xxxxxxxx.jp/)[Japanese]
+  Akira (From WOLF RPG Editor Resource Thread)
+
+-Face Graphic Generator Data/Base Graphics
+  Kitakarai
+
+-Face Graphic Part Assistance (From Face Graphic Generator Project Page)
+  korcs, Umino, haji, kk, Tateha, Takezou, van, Zefi, Akira
+  Amania, Yukihaku, Hotaru, Minmin, Keika, Maarin, Morimoru, Megumi Saki
+  Maruta, Morimoru
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+[Other Data Collection: Version 1 Resources]
+
+[Monster Graphics]
+  Isooki (http://www.geocities.jp/iso015/)[Japanese but the website is nonexistent]
+  Suu (http://suulabo.dw.land.to/)[Japanese but the website is nonexistent]
+
+[Map Graphics]
+  Nori (http://nega.client.jp/)[Japanese]
+  * Parts by the following used from the WOLF Editor Wiki and Resource Request Thread.
+    Yuuto, RETAW, Suu, Karekusa, Sumika, Urocchi, Rikugame
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+* Rights to the resouces included in the Sample Game:
+  ·Graphic Resources: Can reuse, modify, and use outside of WOLF RPG Editor
+  ·MIDI Resouces: Can reuse only
+  ·WAV/OGG Resources: Can reuse, modify, and use outside of WOLF RPG Editor
+
+  In addition, games using these resources can be sold.
+  However, sale of the resources themselves is prohibited.
+
+  * Reuse refers to packaging the files with and using them in a game.
+  * Modification refers to making changes to the files for use in your own game.
+
+
+* Redistribution of base systems that are modified from the Default System is also allowed.
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+|Copyrights For Resources/Libraries Used|
+
+-DX Library
+  DX Library Copyright (C) 2001-2008 Takumi Yamada.
+
+-JPEG Loading
+  libjpeg  Copyright (C) 1991-1998, Thomas G. Lane.
+
+-PNG Loading
+  libpng  Copyright (c) 1998-2004 Glenn Randers-Pehrson.
+  zlib  Copyright (C) 1995-2004 Jean-loup Gailly and Mark Adler.
+
+-OggVorbis Loading
+  ogg_static, vorbis_static, vorbisfile_static
+  Copyright (C) 1994-2002 XIPHOPHORUS Company.
+
+
+*Please contact via the link below if you encounter bugs or other issues in this game.
+  Check the bug report thread on the forums.
+||||||||||||||||||||||-----
+-WOLF RPG Editor Official Site:
+http://www.silversecond.com/WolfRPGEditor/ [Japanese]
+-Developer Site: SilverSecond
+http://www.silversecond.net/ [Japanese]
+||||||||||||||||||||||-----
+
+* Unauthorized reproduction or commercial usage of this game is forbidden.
