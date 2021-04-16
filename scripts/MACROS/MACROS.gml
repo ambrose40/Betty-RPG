@@ -1,35 +1,40 @@
-function MACROS() {
-	#macro FRAME_RATE 60
-	#macro TILE_SIZE 8
-	#macro CARDINAL_DIR round(direction/90)
-	#macro ROOM_START rBeach
+#macro FRAME_RATE 60
+#macro TILE_SIZE 8
+#macro CARDINAL_DIR round(direction/90)
+#macro ROOM_START rBeach
 
-	#macro RESOLUTION_W 320	
-	#macro RESOLUTION_H 180
+#macro RESOLUTION_W 320	
+#macro RESOLUTION_H 180
 
-	#macro RESOLUTION_W_S RESOLUTION_W * 1
-	#macro RESOLUTION_H_S RESOLUTION_H * 1
+#macro RESOLUTION_W_S RESOLUTION_W * 1
+#macro RESOLUTION_H_S RESOLUTION_H * 1
 
-	#macro TRANSITION_SPEED 0.02
-	#macro OUT 0
-	#macro IN 1
-	enum ENEMYSTATE 
-	{
-		IDLE,
-		WANDER,
-		CHASE,
-		ATTACK,
-		HURT,
-		DIE,
-		WAIT
-	}
+#macro TRANSITION_SPEED 0.02
+#macro OUT 0
+#macro IN 1
+
+enum ENEMYSTATE {
+	IDLE,
+	WANDER,
+	CHASE,
+	ATTACK,
+	HURT,
+	DIE,
+	WAIT
+}
 	
-	enum ITEM
-	{
-		NONE,
-		BOMB,
-		BOW,
-		HOOK,
-		TYPE_COUNT
-	}
+enum ITEM {
+	NONE,
+	BOMB,
+	BOW,
+	HOOK,
+	TYPE_COUNT
+}
+
+enum HOOKSTATUS {
+	EXTENDING,
+	PULLTOPLAYER,
+	PULLTOENTITY,
+	MISSED,
+	INACTIVE
 }
