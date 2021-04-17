@@ -7,7 +7,18 @@ var roomname = room_get_name(room);
 
 var _latest = global.gameLoad;
 
-LoadRoom(roomname, _latest);
+if (roomname == "rBeach") {
+	LoadRoom(roomname, global.isLatest[ROOMS.R_BEACH]);
+}
+if (roomname == "rBeachCamp") {
+	LoadRoom(roomname, global.isLatest[ROOMS.R_BEACH_CAMP]);
+}
+if (roomname == "rBeachShip") {
+	LoadRoom(roomname, global.isLatest[ROOMS.R_BEACH_SHIP]);
+}
+if (roomname == "rBeachTent") {
+	LoadRoom(roomname, global.isLatest[ROOMS.R_BEACH_TENT]);
+}
 /*
 if (_latest) {
 	var _path = GetSavePath(roomname, _latest);

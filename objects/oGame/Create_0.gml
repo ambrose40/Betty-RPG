@@ -52,7 +52,7 @@ gifRecord = false;
 global.iRested = 0;
 global.iLifted = noone;
 
-global.isLatest = false;
+global.isLatest = array_create(ROOMS.TYPE_COUNT, false);
 global.volume = 0.0;
 global.snd = -1;
 

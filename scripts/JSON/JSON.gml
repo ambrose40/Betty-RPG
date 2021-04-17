@@ -328,6 +328,19 @@ function LoadRoom(_roomname, _latest) {
 			
 			show_debug_message("Game loaded! " + _string);
 			global.gameLoad = false;
+			
+			if (_roomname == "rBeach") {
+				global.isLatest[ROOMS.R_BEACH] = false;
+			}
+			if (_roomname == "rBeachCamp") {
+				global.isLatest[ROOMS.R_BEACH_CAMP] = false;
+			}
+			if (_roomname == "rBeachShip") {
+				global.isLatest[ROOMS.R_BEACH_SHIP] = false;
+			}
+			if (_roomname == "rBeachTent") {
+				global.isLatest[ROOMS.R_BEACH_TENT] = false;
+			}
 		}
 	}
 }

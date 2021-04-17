@@ -44,8 +44,15 @@ enum QUEST {
 	TYPE_COUNT
 }
 
-enum TRANS_TYPE
-{
+enum TRANS_TYPE {
 	SLIDE,
 	FADE
+}
+
+enum ROOMS {
+	R_BEACH,
+	R_BEACH_CAMP,
+	R_BEACH_SHIP,
+	R_BEACH_TENT,
+	TYPE_COUNT
 }
