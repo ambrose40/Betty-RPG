@@ -22,6 +22,7 @@ liftZ[5] = 14;
 liftZ[6] = 15;
 liftZ[7] = 14;
 entityDropList = -1;
-
+grav = 0;
+old_id = id;
 /// Get New Tilemap
 collisionMap = layer_tilemap_get_id(layer_get_id("Col"));

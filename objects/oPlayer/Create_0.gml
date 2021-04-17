@@ -1,7 +1,6 @@
 state = PlayerStateFree;
 stateAttack = AttackSlash;
 lastState = state;
-
 r_color = 1;
 g_color = 1;
 b_color = 1;
@@ -19,7 +18,7 @@ distanceHook = 88;
 distanceRoll = 72;
 distanceBonk = 40;
 distanceBonkHeight = 12;
-
+old_id = 0;
 lifted = 0;
 thrown = false;
 invulnerable = 0;

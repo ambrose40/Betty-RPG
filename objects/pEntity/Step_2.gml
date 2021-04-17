@@ -25,7 +25,9 @@ if (!global.gamePaused) {
 			z = throwPeakHeight * sin(throwPercent * pi);		
 			if (throwDistance == throwDistanceTravelled) {
 				thrown = false;
-				if (entityThrowBreak) instance_destroy();
+				if (entityThrowBreak) {
+					instance_destroy();
+				}
 			}
 		} else {
 			// Fall back to earth if above zero Z

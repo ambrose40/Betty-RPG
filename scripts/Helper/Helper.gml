@@ -75,3 +75,65 @@ function GetRoomName(room) {
 		return "Inside tent";
 	}
 }
+
+function CurrentTimeString() {
+	return string(current_year) + "_" + string(current_month) + "_" + string(current_day) + "_" + string(current_hour) + "_" + string(current_minute) + "_" + string(current_second);
+}
+
+function GetSavePath(filename, _latest) {
+	var _dir_name = global.saveFolder;
+	if (_latest) {
+		_dir_name = "Save_latest";
+	} 
+	if !directory_exists(_dir_name) {
+		directory_create(_dir_name);
+	}
+	var _path = _dir_name + "\\" + filename + ".json";
+	return _path;
+}
+
+function SaveJsonBuffer(_string, _filename) {
+	var _buffer = buffer_create(string_byte_length(_string) + 1, buffer_fixed, 1);
+	var _path = GetSavePath(_filename, false);
+	buffer_write(_buffer, buffer_string, _string);
+	buffer_save(_buffer, _path);
+	buffer_delete(_buffer);
+
+	show_debug_message("File (" + _filename + ") succesfully written!");
+}
+
+function ReadJsonBuffer(_filename, _latest) {
+	var _path = GetSavePath(_filename, _latest);
+	var _buffer = buffer_load(_path);
+	var _string = buffer_read(_buffer, buffer_string);
+	buffer_delete(_buffer);
+	
+	show_debug_message("File (" + _filename + ") succesfully read!");
+	
+	return _string;
+}
+
+function CopyJsonBuffer(filename) {
+	var _path = GetSavePath(filename, false);
+	var _buffer = buffer_load(_path);
+	var _string = buffer_read(_buffer, buffer_string);
+	buffer_delete(_buffer);
+	
+	var _buffer = buffer_create(string_byte_length(_string) + 1, buffer_fixed, 1);
+	var _path = GetSavePath(filename, true);
+	buffer_write(_buffer, buffer_string, _string);
+	buffer_save(_buffer, _path);
+	buffer_delete(_buffer);
+	
+	show_debug_message("File (" + filename + ") succesfully copied!");
+}
+
+function GetCurrentRoomName() {
+	if (global.iMap == 0) {
+		var roomname = room_get_name(room);
+	} else {
+		var roomname = room_get_name(global.lastRoom);
+	}
+	
+	return roomname;
+}

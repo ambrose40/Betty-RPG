@@ -74,7 +74,7 @@ function EnemyChase() {
 	}
 
 	// Check if close enough to launch an attack
-	if (instance_exists(target)) && (point_distance(x,y,target.x,target.y) <= enemyAttackRadius) {
+	if (instance_exists(target)) && (point_distance(x, y, target.x, target.y) <= enemyAttackRadius) {
 		state = ENEMYSTATE.ATTACK;
 		sprite_index = sprAttack;
 		image_index = 0;
@@ -102,17 +102,17 @@ function EnemyWander() {
 		if (++wait >= waitDuration) {
 			wait = 0;	
 			timePassed = 0;
-			dir = point_direction(x,y,xstart,ystart) + irandom_range(-45,45)
-			xTo = x + lengthdir_x(enemyWanderDistance,dir)
-			yTo = y + lengthdir_y(enemyWanderDistance,dir)
+			dir = point_direction(x, y, xstart, ystart) + irandom_range(-45, 45)
+			xTo = x + lengthdir_x(enemyWanderDistance, dir)
+			yTo = y + lengthdir_y(enemyWanderDistance, dir)
 		}
 	} else {// Move towards destination
 		timePassed++;
-		var _distanceToGo = point_distance(x,y,xTo,yTo);
+		var _distanceToGo = point_distance(x, y, xTo, yTo);
 		var _speedThisFrame = enemySpeed;
 		if (_distanceToGo < enemySpeed) _speedThisFrame = _distanceToGo;
 		image_speed = 1.0;
-		dir = point_direction(x,y,xTo,yTo);
+		dir = point_direction(x, y, xTo, yTo);
 		hSpeed = lengthdir_x(_speedThisFrame,dir);
 		vSpeed = lengthdir_y(_speedThisFrame,dir);
 		if (hSpeed != 0) image_xscale = sign(hSpeed);
@@ -123,7 +123,7 @@ function EnemyWander() {
 	// Check for aggro
 	if (++aggroCheck >= aggroCheckDuration) {
 		aggroCheck = 0;
-		if (instance_exists(oPlayer)) && (point_distance(x,y,oPlayer.x,oPlayer.y) <= enemyAggroRadius) {
+		if (instance_exists(oPlayer)) && (point_distance(x, y, oPlayer.x, oPlayer.y) <= enemyAggroRadius) {
 			state = ENEMYSTATE.CHASE;
 			target = oPlayer;
 		}

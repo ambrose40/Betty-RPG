@@ -1,23 +1,28 @@
-function SaveGame(filename) {
-	if (global.iMap == 0) {
-		currentRoom = room;
-		var roomname = room_get_name(room);
-	} else {
-		currentRoom = global.lastRoom;
-		var roomname = room_get_name(global.lastRoom);
-	}
-	// make save array
+function SaveGame(_filename) {
+	var _roomname = GetCurrentRoomName();
+	// Make save array
 	var _saveData = array_create(0);
-	
-	//for every instance, create a struct and add it to the array
+	var _saveLifted = -4;
+	// For every instance, create a struct and add it to the array
 	with (pEntity) {
+		var _saveEntity = {};
 		if (object_is_ancestor(object_index, pEnemy)) {
-			var _saveEntity =  {
+			_saveEntity = {
+				// general object part
 				obj : object_get_name(object_index),
 				y : y,
 				x : x,
-				direction : direction,
+				xstart : xstart,
+				ystart : ystart,
+				image_speed : image_speed,
+				image_xscale : image_xscale,
 				z : z,
+				depth : depth,
+				direction : direction,
+				visible : visible,
+				persistent : persistent,
+				// entity object part
+				old_id : old_id,
 				lifted : lifted,
 				thrown : thrown,
 				entityActivateArgs : entityActivateArgs,
@@ -33,9 +38,7 @@ function SaveGame(filename) {
 				entityShadow : entityShadow,
 				entityThrowBreak : entityThrowBreak,
 				entityThrowDistance : entityThrowDistance,
-				visible : visible,
-				persistent : persistent,
-				// enemy object
+				// enemy object part
 				enemyAggroRadius : enemyAggroRadius,
 				enemyAttackRadius : enemyAttackRadius,
 				enemyDamageTouch : enemyDamageTouch,
@@ -60,55 +63,51 @@ function SaveGame(filename) {
 				wait : wait,
 				target : target,
 				entityDropList : entityDropList,
-			}
+			};
+		} else {
+			_saveEntity = {
+				// general object part
+				obj : object_get_name(object_index),
+				y : y,
+				x : x,
+				xstart : xstart,
+				ystart : ystart,
+				image_speed : image_speed,
+				image_xscale : image_xscale,
+				z : z,
+				depth : depth,
+				direction : direction,
+				visible : visible,
+				persistent : persistent,
+				// entity object part
+				old_id : old_id,
+				lifted : lifted,
+				thrown : thrown,
+				entityActivateArgs : entityActivateArgs,
+				entityActivateScript : entityActivateScript,
+				entityActivateType : entityActivateType,
+				entityCollision : entityCollision,
+				entityDropList : entityDropList,
+				entityFragment : entityFragment,
+				entityFragmentCount : entityFragmentCount,
+				entityHitScript : entityHitScript,
+				entityHookable : entityHookable,
+				entityNPC : entityNPC,
+				entityShadow : entityShadow,
+				entityThrowBreak : entityThrowBreak,
+				entityThrowDistance : entityThrowDistance,	
+			};
+		}
+		if (_saveEntity.lifted <= 0.0) {
 			array_push(_saveData, _saveEntity);
 		} else {
-			var _saveEntity =  {
-			obj : object_get_name(object_index),
-			y : y,
-			x : x,
-			direction : direction,
-			z : z,
-			lifted : lifted,
-			thrown : thrown,
-			entityActivateArgs : entityActivateArgs,
-			entityActivateScript : entityActivateScript,
-			entityActivateType : entityActivateType,
-			entityCollision : entityCollision,
-			entityDropList : entityDropList,
-			entityFragment : entityFragment,
-			entityFragmentCount : entityFragmentCount,
-			entityHitScript : entityHitScript,
-			entityHookable : entityHookable,
-			entityNPC : entityNPC,
-			entityShadow : entityShadow,
-			entityThrowBreak : entityThrowBreak,
-			entityThrowDistance : entityThrowDistance,
-			visible : visible,
-			persistent : persistent,
+			_saveLifted = _saveEntity;
 		}
-		array_push(_saveData, _saveEntity);
-		}
-		
 	}
 
-	var _saveStruct = 
-	{
-		currentRoom: roomname,
-		
-		player : {
-			x : global.targetXPlayer,
-			y : global.targetYPlayer,
-			direction : global.targetDirectionPlayer,
-		},
-		/*
-		bot : {
-			x : oBot.x,
-			y : oBot.y,
-			direction : oBot.direction,
-		},
-		*/
-		
+	var _saveStruct = {
+		currentRoom: _roomname,
+			
 		playerHasAnyItems : global.playerHasAnyItems,
 		playerEquipped : global.playerEquipped,
 		playerAmmo : global.playerAmmo,
@@ -138,25 +137,22 @@ function SaveGame(filename) {
 		lastX : global.lastX,
 		lastY : global.lastY,
 		coinsAmount : oPlayer.coinsAmount,
+		iLifted : global.iLifted,
+		lifted : _saveLifted,
 		entities : _saveData,
 	};
 
-	//turn all this data into a JSON string and save it via a buffer
+	// Turn all this data into a JSON string and save it via a buffer
 	var _string = json_stringify(_saveStruct);
-	var _buffer = buffer_create(string_byte_length(_string) +1, buffer_fixed, 1);
-	buffer_write(_buffer, buffer_string, _string);
-	buffer_save(_buffer, filename + ".json");
-	buffer_delete(_buffer);
-
-	show_debug_message("Game (" + roomname + ") saved! " + _string);
+	SaveJsonBuffer(_string, _filename);
+	
+	show_debug_message("Game saved! " + _string);
 	global.gameSave = false;
 }
 
-function LoadGame(filename) {
-	if (file_exists(filename + ".json")) {
-		var _buffer = buffer_load(filename + ".json");
-		var _string = buffer_read(_buffer, buffer_string);
-		buffer_delete(_buffer);
+function LoadGame(filename, _latest) {
+	if (file_exists(GetSavePath(filename, _latest))) {
+		var _string = ReadJsonBuffer(filename, _latest);
 	
 		var _loadData = json_parse(_string);
 		
@@ -166,10 +162,7 @@ function LoadGame(filename) {
 		global.playerItemUnlocked =_loadData.playerItemUnlocked;
 
 		global.targetRoom = _loadData.targetRoom;
-		/*
-		global.saveXPlayer = _loadData.saveXPlayer;
-		global.saveYPlayer = _loadData.saveYPlayer;
-		*/
+
 		global.targetXBot = _loadData.targetXBot;
 		global.targetYBot = _loadData.targetYBot;
 		global.targetDirectionBot = _loadData.targetDirectionBot;
@@ -186,22 +179,16 @@ function LoadGame(filename) {
 		
 		global.playerHealth = _loadData.playerHealth;
 		global.playerHealthMax = _loadData.playerHealthMax;
-		with (oPlayer) {
-			coinsAmount = _loadData.coinsAmount;
-		}
-		
 		room_goto(asset_get_index(_loadData.currentRoom));
 	}
 }
 
-function LoadRoom(roomname) {
+function LoadRoom(_roomname, _latest) {
 	if (global.gameLoad) {
-		roomname = "savegame";
+		_roomname = "savegame";
 	}
-	if (file_exists(roomname + ".json")) {
-		var _buffer = buffer_load(roomname + ".json");
-		var _string = buffer_read(_buffer, buffer_string);
-		buffer_delete(_buffer);
+	if (file_exists(GetSavePath(_roomname, _latest))) {
+		var _string = ReadJsonBuffer(_roomname, _latest);
 	
 		var _loadData = json_parse(_string);
 		if (room == asset_get_index(_loadData.currentRoom)) {
@@ -225,13 +212,21 @@ function LoadRoom(roomname) {
 					if (_loadEntity.obj == "oBot") {
 						state = BotStateFree;
 					}
-				
+					// general object
 					y = _loadEntity.y;
 					x = _loadEntity.x;
+					xstart = _loadEntity.xstart;
+					ystart = _loadEntity.ystart;
+					image_speed = _loadEntity.image_speed;
+					image_xscale = _loadEntity.image_xscale;
 					z = _loadEntity.z;
 					direction = _loadEntity.direction;
 					visible = _loadEntity.visible;
-				
+					depth = _loadEntity.depth;
+					persistent = _loadEntity.persistent;
+					
+					// entity object
+					old_id = _loadEntity.old_id;
 					lifted = _loadEntity.lifted;
 					thrown = _loadEntity.thrown;
 					entityActivateType = _loadEntity.entityActivateType;
@@ -250,7 +245,7 @@ function LoadRoom(roomname) {
 					entityThrowBreak = _loadEntity.entityThrowBreak;
 					entityThrowDistance = _loadEntity.entityThrowDistance;
 					
-					if (object_is_ancestor(asset_id, pEnemy)) {
+					if (object_is_ancestor(object_index, pEnemy)) {
 						// enemy object
 						enemyAggroRadius = _loadEntity.enemyAggroRadius;
 						enemyAttackRadius = _loadEntity.enemyAttackRadius;
@@ -279,9 +274,98 @@ function LoadRoom(roomname) {
 					}
 				}
 			}
+			var _foundOldLifted = false;
+			var _loadEntity = _loadData.lifted;
+			if (_loadEntity != noone) {
+				_foundOldLifted = CheckFoundOldLifted("rBeach", _loadEntity) 
+									|| CheckFoundOldLifted("rBeachCamp", _loadEntity) 
+									|| CheckFoundOldLifted("rBeachTent", _loadEntity) 
+									|| CheckFoundOldLifted("rBeachShip", _loadEntity);
+				if (_loadData.iLifted != noone && !_foundOldLifted) {
+					var asset_id = asset_get_index(_loadEntity.obj);
+					var obj_id = instance_create_layer(0, 0, layer, asset_id);
+					global.iLifted = obj_id;
+					with (obj_id) {
+						// general object
+						y = _loadEntity.y;
+						x = _loadEntity.x;
+						xstart = _loadEntity.xstart;
+						ystart = _loadEntity.ystart;
+						image_speed = _loadEntity.image_speed;
+						image_xscale = _loadEntity.image_xscale;
+						z = _loadEntity.z;
+						direction = _loadEntity.direction;
+						visible = _loadEntity.visible;
+						depth = _loadEntity.depth;
+						persistent = _loadEntity.persistent;
+					
+						// entity object
+						old_id = _loadEntity.old_id;
+						lifted = _loadEntity.lifted;
+						grav = 0.1;
+						thrown = _loadEntity.thrown;
+						entityActivateType = _loadEntity.entityActivateType;
+						entityActivateArgs = [id];
+						entityActivateScript = _loadEntity.entityActivateScript;
+						entityCollision = _loadEntity.entityCollision;
+						entityFragment = _loadEntity.entityFragment;
+						entityFragmentCount = _loadEntity.entityFragmentCount;
+						entityHitScript = _loadEntity.entityHitScript;
+						entityNPC = _loadEntity.entityNPC;
+						entityShadow = _loadEntity.entityShadow;
+						entityThrowBreak = _loadEntity.entityThrowBreak;
+						entityThrowDistance = _loadEntity.entityThrowDistance;
+					}
+				
+					spriteIdle = sPlayerCarry;
+					spriteRun = sPlayerRunCarry;
+					spriteRoll = sPlayerRunCarry;
+				}
+			}
+			with (oPlayer) {
+				coinsAmount = _loadData.coinsAmount;
+			}
 			
 			show_debug_message("Game loaded! " + _string);
 			global.gameLoad = false;
 		}
 	}
+}
+
+function SaveLatestGame() {
+	SaveGame("savegame");
+
+	if (file_exists(GetSavePath("rBeach", false))) {
+		CopyJsonBuffer("rBeach")
+	}
+	if (file_exists(GetSavePath("rBeachCamp", false))) {
+		CopyJsonBuffer("rBeachCamp")
+	}
+	if (file_exists(GetSavePath("rBeachShip", false))) {
+		CopyJsonBuffer("rBeachShip")
+	}
+	if (file_exists(GetSavePath("rBeachTent", false))) {
+		CopyJsonBuffer("rBeachTent")
+	}
+	if (file_exists(GetSavePath("savegame", false))) {
+		CopyJsonBuffer("savegame")
+	}
+}
+
+function CheckFoundOldLifted(_roomname, _loadEntity) {
+	var _foundOldLifted = false;
+	if (file_exists(GetSavePath(_roomname, false))) {
+		var _string = ReadJsonBuffer(_roomname, false);
+	
+		var _loadData = json_parse(_string);
+		
+		while (array_length(_loadData.entities) > 0) {
+			var _oldEntity = array_pop(_loadData.entities);
+			if (_oldEntity.old_id == _loadEntity.old_id) {
+				_foundOldLifted = true;
+				break;
+			}
+		}
+	}
+	return _foundOldLifted;
 }

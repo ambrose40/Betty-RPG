@@ -1,5 +1,6 @@
 /// @desc Initialise & Globals
 randomize();
+global.saveFolder = "Save_" + CurrentTimeString();
 global.gamePausedImageSpeed = 0;
 global.gamePaused = false;
 global.textSpeed = .75;
@@ -51,6 +52,7 @@ gifRecord = false;
 global.iRested = 0;
 global.iLifted = noone;
 
+global.isLatest = false;
 global.volume = 0.0;
 global.snd = -1;
 

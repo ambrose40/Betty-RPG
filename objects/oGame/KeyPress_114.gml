@@ -1,3 +1,3 @@
 /// @description Load Game
 global.gameLoad = true;
-LoadGame("savegame");
+LoadGame("savegame", true);

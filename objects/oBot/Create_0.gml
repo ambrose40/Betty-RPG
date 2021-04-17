@@ -53,6 +53,8 @@ targetDirection = -1;
 
 entityDropList = -1;
 
+old_id = id;
+
 if (global.targetXBot != -1)
 {
 	x = global.targetXBot;
