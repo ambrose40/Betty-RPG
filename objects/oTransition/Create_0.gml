@@ -1,9 +1,4 @@
 /// @desc Enums + Setup
-enum TRANS_TYPE
-{
-	SLIDE,
-	FADE
-}
 
 width = RESOLUTION_W;
 height = RESOLUTION_H;

@@ -47,5 +47,7 @@ hookedEntity = noone;
 hookedCollectible = false;
 hookSize = sprite_get_width(sHookChain);
 
+entityDropList = -1;
+
 depth = -1000;
 image_speed = 0;

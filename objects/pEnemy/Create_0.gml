@@ -14,7 +14,7 @@ stateTarget = state;
 statePrevious = state;
 stateWait = 0;
 stateWaitDuration = 0;
-
+target = noone;
 //Enemy Sprites
 sprMove = sSlime;
 

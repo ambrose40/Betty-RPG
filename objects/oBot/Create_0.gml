@@ -51,6 +51,8 @@ targetX = -1;
 targetY = -1;
 targetDirection = -1;
 
+entityDropList = -1;
+
 if (global.targetXBot != -1)
 {
 	x = global.targetXBot;

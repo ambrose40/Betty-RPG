@@ -1,4 +1,3 @@
 /// @description Load Game
-// global.gamePaused = true;
+global.gameLoad = true;
 LoadGame("savegame");
-//global.gamePaused = false;

@@ -13,7 +13,7 @@ function DialogueResponses(response) {
 			NewTextBox("Thanks!", 2);
 			NewTextBox("I think I left the hat in\na tent on a beach further east!", 2);
 			NewTextBox("Be careful it is occupied by\nBeholder demonic creature!", 2);
-			global.questStatus[? "TheHatQuest"] = 1;
+			global.questStatus[QUEST.THE_HAT_QUEST] = 1;
 		}; break;
 		case 9: {
 			NewTextBox("Sad you see it that way!", 2);

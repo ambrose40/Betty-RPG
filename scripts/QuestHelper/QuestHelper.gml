@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function ActivateHatCat() {
 	var _hasHat = (global.iLifted != noone) && (global.iLifted.object_index == oHat);
-	switch (global.questStatus[? "TheHatQuest"]) {
+	switch (global.questStatus[QUEST.THE_HAT_QUEST]) {
 		case 0: // Not started
 			// Player might have brought the hat back anyway
 			if (_hasHat) {
@@ -35,7 +35,7 @@ function ActivateHatCat() {
 
 function CompleteHatCat() {
 	NewTextBox("You are true hero indeed!", 2);
-	global.questStatus[? "TheHatQuest"] = 2;
+	global.questStatus[QUEST.THE_HAT_QUEST] = 2;
 	with (oNPC) sprite_index = sQuestieHat;
 	with (oHat) instance_destroy();
 		
