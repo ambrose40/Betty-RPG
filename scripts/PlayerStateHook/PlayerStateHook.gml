@@ -38,7 +38,7 @@ function PlayerStateHook() {
 			}
 			
 			// Check for hit
-			var _hookHit = collision_circle(x+hookX, y+hookY, 6, pEntity, false, true);
+			var _hookHit = collision_circle(x + hookX, y + hookY, 6, pEntity, false, true);
 			if (_hookHit != noone) && (global.iLifted != _hookHit) {
 				// Act depending on what is hit
 				switch (_hookHit.entityHookable) {
@@ -85,6 +85,8 @@ function PlayerStateHook() {
 		// Pull the entity towards the hooked player
 		case HOOKSTATUS.PULLTOPLAYER: {
 			with (hookedEntity) {
+				// x = other.x + other.hookX;
+				// y = other.y + other.hookY;
 				x = other.x + other.hookX;
 				y = other.y + other.hookY;
 			}

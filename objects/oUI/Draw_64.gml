@@ -122,7 +122,7 @@ if (oGame.gifRecord) {
 }
 // Show help
 if (keyboard_check(vk_f1)) {
-	DrawHelp("F1 - Help\nF4 - Save screenshot\nG - Record GIF\nM - Map\nR - Restart game\nT - Show mission\nCtrl - Main attack\nTab - Defence\nHome - Meditate\nSpace - Roll/Skip",  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
+	DrawHelp("F1 - Help\nF2 - Save game, F3 - Load game\nF4 - Save screenshot, G - Record GIF\nM - Map\nR - Restart game, T - Show mission\nCtrl - Main attack\nTab - Follow Betty\nHome - Rest\nAlt - Use item\nSpace - Roll/Skip/Activate",  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
 }
 
 // Show stats

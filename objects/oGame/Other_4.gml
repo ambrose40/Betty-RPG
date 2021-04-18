@@ -5,8 +5,6 @@ layer_set_visible("Col", false);
 PlayMainMusic();
 var roomname = room_get_name(room);
 
-var _latest = global.gameLoad;
-
 if (roomname == "rBeach") {
 	LoadRoom(roomname, global.isLatest[ROOMS.R_BEACH]);
 }
@@ -19,9 +17,3 @@ if (roomname == "rBeachShip") {
 if (roomname == "rBeachTent") {
 	LoadRoom(roomname, global.isLatest[ROOMS.R_BEACH_TENT]);
 }
-/*
-if (_latest) {
-	var _path = GetSavePath(roomname, _latest);
-	file_delete(_path);
-}
-*/
