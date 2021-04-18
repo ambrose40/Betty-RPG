@@ -222,8 +222,10 @@ function LoadRoom(_roomname, _latest) {
 		var _loadData = json_parse(_string);
 		if (room == asset_get_index(_loadData.currentRoom)) {
 			with (pEntity) {
-				instance_destroy();
-				show_debug_message("instance_destroy " + object_get_name(object_index));
+				if (!lifted) {
+					instance_destroy();
+					show_debug_message("instance_destroy " + object_get_name(object_index));
+				}
 			}
 
 			with (oFragment) {
