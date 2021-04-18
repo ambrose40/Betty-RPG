@@ -2,7 +2,35 @@ function SaveGame(_filename) {
 	var _roomname = GetCurrentRoomName();
 	// Make save array
 	var _saveData = array_create(0);
-	var _saveLifted = -4;
+	var _fragData = array_create(0);
+	var _saveLifted = noone;
+	with (oFragment) {
+		_saveFragment = {
+			obj : object_get_name(object_index),
+			y : y,
+			x : x,
+			xstart : xstart,
+			ystart : ystart,
+			image_speed : image_speed,
+			image_xscale : image_xscale,
+			z : z,
+			depth : depth,
+			direction : direction,
+			visible : visible,
+			persistent : persistent,
+			bounce : bounce,
+			bounceCount : bounceCount,
+			bounceSpeed : bounceSpeed,
+			bounceHeight : bounceHeight,
+			deteriorate : deteriorate,
+			deteriorateAfter : deteriorateAfter,
+			deteriorateTime : deteriorateTime,
+			spd : spd,
+			fric : fric,
+		};
+		array_push(_fragData, _saveFragment);
+	}
+	
 	// For every instance, create a struct and add it to the array
 	with (pEntity) {
 		var _saveEntity = {};
@@ -140,6 +168,7 @@ function SaveGame(_filename) {
 		iLifted : global.iLifted,
 		lifted : _saveLifted,
 		entities : _saveData,
+		fragments : _fragData,
 	};
 
 	// Turn all this data into a JSON string and save it via a buffer
@@ -197,12 +226,45 @@ function LoadRoom(_roomname, _latest) {
 				show_debug_message("instance_destroy " + object_get_name(object_index));
 			}
 
+			with (oFragment) {
+				instance_destroy();
+				show_debug_message("instance_destroy " + object_get_name(object_index));
+			}
+
+			while (array_length(_loadData.fragments) > 0) {
+				var _loadEntity = array_pop(_loadData.fragments);
+				var asset_id = asset_get_index(_loadEntity.obj);
+				var obj_id = instance_create_layer(0, 0, layer, asset_id);
+				with (obj_id) {		
+					// general object
+					y = _loadEntity.y;
+					x = _loadEntity.x;
+					xstart = _loadEntity.xstart;
+					ystart = _loadEntity.ystart;
+					image_speed = _loadEntity.image_speed;
+					image_xscale = _loadEntity.image_xscale;
+					z = _loadEntity.z;
+					direction = _loadEntity.direction;
+					visible = _loadEntity.visible;
+					depth = _loadEntity.depth;
+					persistent = _loadEntity.persistent;
+					bounce = _loadEntity.bounce;
+					bounceCount = _loadEntity.bounceCount;
+					bounceSpeed = _loadEntity.bounceSpeed;
+					bounceHeight = _loadEntity.bounceHeight;
+					deteriorate = _loadEntity.deteriorate;
+					deteriorateAfter = _loadEntity.deteriorateAfter;
+					deteriorateTime = _loadEntity.deteriorateTime;
+					spd = _loadEntity.spd;
+					fric = _loadEntity.fric;
+				}
+			}
+		
 			while (array_length(_loadData.entities) > 0) {
 				var _loadEntity = array_pop(_loadData.entities);
 				var asset_id = asset_get_index(_loadEntity.obj);
 				var obj_id = instance_create_layer(0, 0, layer, asset_id);
-				with (obj_id)
-				{				
+				with (obj_id) {				
 					if (_loadEntity.obj == "oPlayer") {
 						state = PlayerStateFree;
 						global.targetXPlayer = _loadData.saveXPlayer;
