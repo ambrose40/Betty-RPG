@@ -123,6 +123,7 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"e5640975-5909-480f-8c71-ab8c52457b0e","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Support",
     "path": "folders/Sprites/Support.yy",

@@ -159,6 +159,7 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"0a7a12cb-96aa-4e6a-bfc8-46c42cbff8c7","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Bot",
     "path": "folders/Sprites/NPC/Bot.yy",

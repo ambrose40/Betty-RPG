@@ -67,6 +67,7 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"1fc75397-55f5-44d1-82c0-bdf8d3e2d5ac","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Ship",
     "path": "folders/Sprites/Static/Ship.yy",
