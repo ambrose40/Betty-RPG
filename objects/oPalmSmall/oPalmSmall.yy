@@ -25,7 +25,10 @@
   "physicsShapePoints": [],
   "eventList": [],
   "properties": [],
-  "overriddenProperties": [],
+  "overriddenProperties": [
+    {"propertyId":{"name":"entityFragmentExtraCount","path":"objects/oPalmParent/oPalmParent.yy",},"objectId":{"name":"oPalmParent","path":"objects/oPalmParent/oPalmParent.yy",},"value":"5 + irandom(8)","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+    {"propertyId":{"name":"entityFragmentCount","path":"objects/pEntity/pEntity.yy",},"objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"value":"7 + irandom(10)","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
+  ],
   "parent": {
     "name": "Plants",
     "path": "folders/Objects/Static/Plants.yy",
