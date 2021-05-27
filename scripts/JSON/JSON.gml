@@ -348,6 +348,9 @@ function LoadRoom(_roomname, _latest) {
 				if (_loadData.iLifted != noone && !_foundOldLifted) {
 					var asset_id = asset_get_index(_loadEntity.obj);
 					var obj_id = instance_create_layer(0, 0, layer, asset_id);
+					with global.iLifted {
+						instance_destroy();
+					}
 					global.iLifted = obj_id;
 					with (obj_id) {
 						// general object
@@ -380,10 +383,13 @@ function LoadRoom(_roomname, _latest) {
 						entityThrowBreak = _loadEntity.entityThrowBreak;
 						entityThrowDistance = _loadEntity.entityThrowDistance;
 					}
-				
-					spriteIdle = sPlayerCarry;
-					spriteRun = sPlayerRunCarry;
-					spriteRoll = sPlayerRunCarry;
+
+					with (oPlayer) {
+						spriteIdle = sPlayerCarry;
+						spriteRun = sPlayerRunCarry;
+						spriteRoll = sPlayerRunCarry;
+						sprite_index = spriteIdle;
+					}
 				}
 			}
 			with (oPlayer) {
@@ -407,6 +413,17 @@ function LoadRoom(_roomname, _latest) {
 			}
 		}
 	}
+}
+
+function UpdateAnimation() {
+	// Update Sprite Index
+	var _oldSprite = sprite_index;
+	if (inputMagnitude != 0) {
+		direction = inputDirection
+		sprite_index = spriteRun;
+		global.playerEnergy -= 0.0001;
+	} else sprite_index = spriteIdle;
+	if (_oldSprite != sprite_index) localFrame = 0;
 }
 
 function SaveLatestGame() {

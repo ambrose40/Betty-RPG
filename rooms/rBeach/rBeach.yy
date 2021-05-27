@@ -60,7 +60,6 @@
         {"properties":[],"isDnd":false,"objectId":{"name":"oArrowDrop","path":"objects/oArrowDrop/oArrowDrop.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":118.0,"y":330.0,"resourceVersion":"1.0","name":"inst_29573394","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"oArrowDrop","path":"objects/oArrowDrop/oArrowDrop.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":130.0,"y":295.0,"resourceVersion":"1.0","name":"inst_2FE89D5C","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"oArrowDrop","path":"objects/oArrowDrop/oArrowDrop.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":131.0,"y":328.0,"resourceVersion":"1.0","name":"inst_632DE784","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"oBat","path":"objects/oBat/oBat.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":304.0,"y":96.0,"resourceVersion":"1.0","name":"inst_213E173E","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":16,"gridY":16,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Instances","tags":[],"resourceType":"GMRInstanceLayer",},
     {"tilesetId":{"name":"tCol","path":"tilesets/tCol/tCol.yy",},"x":0,"y":0,"tiles":{"SerialiseWidth":44,"SerialiseHeight":60,"TileSerialiseData":[
 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
@@ -217,7 +216,6 @@
     {"name":"inst_29573394","path":"rooms/rBeach/rBeach.yy",},
     {"name":"inst_2FE89D5C","path":"rooms/rBeach/rBeach.yy",},
     {"name":"inst_632DE784","path":"rooms/rBeach/rBeach.yy",},
-    {"name":"inst_213E173E","path":"rooms/rBeach/rBeach.yy",},
   ],
   "inheritCreationOrder": true,
   "sequenceId": null,
