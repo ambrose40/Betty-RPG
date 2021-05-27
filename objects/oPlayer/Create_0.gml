@@ -29,8 +29,6 @@ flashShader = shWhiteFlash;
 
 animationEndScript = -1;
 
-coinsAmount = 0;
-
 spriteRoll = sPlayerRoll;
 spriteRun = sPlayerRun;
 spriteIdle = sPlayer;

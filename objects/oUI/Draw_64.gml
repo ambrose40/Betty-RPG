@@ -34,7 +34,7 @@ draw_set_valign(fa_top);
 _xx += sprite_get_width(sCoinUI) + 4;
 _yy = 27;
 
-var _str = string(oPlayer.coinsAmount);
+var _str = string(global.coinsAmount);
 draw_text(_xx+1, _yy, _str);
 draw_text(_xx-1, _yy, _str);
 draw_text(_xx, _yy+1, _str);
@@ -47,8 +47,7 @@ _xx = 8;
 _yy = 27;
 
 draw_sprite(sItemUIBox,0,_xx,_yy);
-if (global.playerHasAnyItems)
-{
+if (global.playerHasAnyItems) {
 	draw_sprite(sItemUI,global.playerEquipped,_xx,_yy);
 
 	if (global.playerAmmo[global.playerEquipped] != -1) {
@@ -127,5 +126,5 @@ if (keyboard_check(vk_f1)) {
 
 // Show stats
 if (keyboard_check(ord("C"))) {
-	DrawHelp("Coins: " + string(oPlayer.coinsAmount) + "\nHealth: " + string(global.playerHealth) + "\nEnergy: " + string(global.playerEnergy),  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
+	DrawHelp("Coins: " + string(global.coinsAmount) + "\nHealth: " + string(global.playerHealth) + "\nEnergy: " + string(global.playerEnergy),  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
 }

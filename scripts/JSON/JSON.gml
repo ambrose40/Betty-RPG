@@ -164,7 +164,7 @@ function SaveGame(_filename) {
 		saveDirection: global.gameSave ? oPlayer.direction : global.saveDirectionPlayer,
 		lastX : global.lastX,
 		lastY : global.lastY,
-		coinsAmount : oPlayer.coinsAmount,
+		coinsAmount : global.coinsAmount,
 		iLifted : global.iLifted,
 		lifted : _saveLifted,
 		entities : _saveData,
@@ -208,6 +208,7 @@ function LoadGame(filename, _latest) {
 		
 		global.playerHealth = _loadData.playerHealth;
 		global.playerHealthMax = _loadData.playerHealthMax;
+		global.coinsAmount = _loadData.coinsAmount;
 		room_goto(asset_get_index(_loadData.currentRoom));
 	}
 }
@@ -392,9 +393,7 @@ function LoadRoom(_roomname, _latest) {
 					}
 				}
 			}
-			with (oPlayer) {
-				coinsAmount = _loadData.coinsAmount;
-			}
+			
 			
 			show_debug_message("Game loaded! " + _string);
 			global.gameLoad = false;
@@ -413,17 +412,6 @@ function LoadRoom(_roomname, _latest) {
 			}
 		}
 	}
-}
-
-function UpdateAnimation() {
-	// Update Sprite Index
-	var _oldSprite = sprite_index;
-	if (inputMagnitude != 0) {
-		direction = inputDirection
-		sprite_index = spriteRun;
-		global.playerEnergy -= 0.0001;
-	} else sprite_index = spriteIdle;
-	if (_oldSprite != sprite_index) localFrame = 0;
 }
 
 function SaveLatestGame() {

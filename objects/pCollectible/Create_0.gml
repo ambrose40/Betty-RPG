@@ -3,7 +3,7 @@
 event_inherited();
 spd = 0;
 flash = 1;
-
+bounce = 0;
 r_color = 1;
 g_color = 1;
 b_color = 1;

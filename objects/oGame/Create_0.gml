@@ -21,7 +21,7 @@ global.gameSave = false;
 
 global.questStatus = array_create(QUEST.TYPE_COUNT, -1);
 global.questStatus[QUEST.THE_HAT_QUEST] = 0;
-
+global.coinsAmount = 0;
 screenShot = -1;
 global.lastX = -1;
 global.lastY = -1;

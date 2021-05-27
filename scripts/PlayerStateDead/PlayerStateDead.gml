@@ -1,8 +1,8 @@
 function PlayerStateDead() {
 	if (sprite_index != sPlayerDie && sprite_index != sPlayerDead) {
 		PlayDeathMusic();
-		if (oPlayer.coinsAmount > 0) {
-			var _array = array_create(oPlayer.coinsAmount, oCoin);
+		if (global.coinsAmount > 0) {
+			var _array = array_create(global.coinsAmount, oCoin);
 			DropItems(x, y, _array);
 		} 
 		
