@@ -11,6 +11,6 @@ if (visible) {
 	if (entityDropList != -1) {
 		DropItems(x, y, entityDropList);
 	}
-	// visible = false;
-	instance_destroy();
+	visible = false;
+	//instance_destroy();
 }

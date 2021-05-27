@@ -4,4 +4,7 @@
 // Inherit the parent event
 event_inherited();
 
-entityDropList = [oCoin, oCoin, oCoin];
+
+entityDropList = array_create(irandom(5)+1, oCoin);
+
+// entityDropList = [oCoin, oCoin, oCoin];

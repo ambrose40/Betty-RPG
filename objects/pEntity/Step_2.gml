@@ -26,7 +26,7 @@ if (!global.gamePaused) {
 			if (throwDistance == throwDistanceTravelled) {
 				thrown = false;
 				if (entityThrowBreak) {
-					instance_destroy();
+					event_user(1);
 				}
 			}
 		} else {
@@ -34,7 +34,7 @@ if (!global.gamePaused) {
 			if (z > 0) {
 				z = max(z - grav, 0)
 				grav += 0.1;
-				if (z == 0) && (entityThrowBreak) instance_destroy();
+				if (z == 0) && (entityThrowBreak) event_user(1);
 			} else {
 				grav = 0.1;	
 			}
