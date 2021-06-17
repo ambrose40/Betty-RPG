@@ -4,6 +4,7 @@ function SaveGame(_filename) {
 	var _saveData = array_create(0);
 	var _fragData = array_create(0);
 	var _saveLifted = noone;
+	var _saveFragment = {};
 	with (oFragment) {
 		_saveFragment = {
 			obj : object_get_name(object_index),
@@ -92,6 +93,44 @@ function SaveGame(_filename) {
 				target : target,
 				entityDropList : entityDropList,
 			};
+			
+		} else if (object_index = oShopItem) {
+			_saveEntity = {
+				// general object part
+				obj : object_get_name(object_index),
+				y : y,
+				x : x,
+				xstart : xstart,
+				ystart : ystart,
+				image_index : image_index,
+				image_speed : image_speed,
+				image_xscale : image_xscale,
+				z : z,
+				depth : depth,
+				direction : direction,
+				visible : visible,
+				persistent : persistent,
+				// entity object part
+				old_id : old_id,
+				lifted : lifted,
+				thrown : thrown,
+				entityActivateArgs : entityActivateArgs,
+				entityActivateScript : entityActivateScript,
+				entityActivateType : entityActivateType,
+				entityCollision : entityCollision,
+				entityDropList : entityDropList,
+				entityFragment : entityFragment,
+				entityFragmentCount : entityFragmentCount,
+				entityHitScript : entityHitScript,
+				entityHookable : entityHookable,
+				entityNPC : entityNPC,
+				entityShadow : entityShadow,
+				entityThrowBreak : entityThrowBreak,
+				entityThrowDistance : entityThrowDistance,	
+				item : item,
+				itemAmount : itemAmount,
+				itemCost : itemCost,
+			};	
 		} else {
 			_saveEntity = {
 				// general object part
@@ -282,6 +321,7 @@ function LoadRoom(_roomname, _latest) {
 					x = _loadEntity.x;
 					xstart = _loadEntity.xstart;
 					ystart = _loadEntity.ystart;
+					
 					image_speed = _loadEntity.image_speed;
 					image_xscale = _loadEntity.image_xscale;
 					z = _loadEntity.z;
@@ -309,6 +349,13 @@ function LoadRoom(_roomname, _latest) {
 					entityShadow = _loadEntity.entityShadow;
 					entityThrowBreak = _loadEntity.entityThrowBreak;
 					entityThrowDistance = _loadEntity.entityThrowDistance;
+					
+					if (object_index = oShopItem) {
+						image_index = _loadEntity.image_index;
+						item = _loadEntity.item;
+						itemCost = _loadEntity.itemCost;
+						itemAmount = _loadEntity.itemAmount;
+					}
 					
 					if (object_is_ancestor(object_index, pEnemy)) {
 						// enemy object

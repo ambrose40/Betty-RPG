@@ -25,7 +25,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Text",
-    "path": "folders/Objects/Text.yy",
+    "path": "folders/Objects/Static/Text.yy",
   },
   "resourceVersion": "1.0",
   "name": "oTextQueued",
