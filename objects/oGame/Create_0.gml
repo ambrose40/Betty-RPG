@@ -35,11 +35,11 @@ global.playerEnergyMax = 3;
 global.playerEnergy = global.playerEnergyMax;
 
 //Items
-global.playerHasAnyItems = true;
+global.playerHasAnyItems = false;
 global.playerEquipped = ITEM.BOMB;
-global.playerAmmo = array_create(ITEM.TYPE_COUNT, -1);
+global.playerAmmo = array_create(ITEM.TYPE_COUNT, 0);
 global.playerItemUnlocked = array_create(ITEM.TYPE_COUNT, false);
-
+/*
 global.playerItemUnlocked[ITEM.BOMB] = true;
 global.playerAmmo[ITEM.BOMB] = 5;
 
@@ -47,7 +47,7 @@ global.playerItemUnlocked[ITEM.BOW] = true;
 global.playerAmmo[ITEM.BOW] = 15;
 
 global.playerItemUnlocked[ITEM.HOOK] = true;
-
+*/
 gifRecord = false;
 global.iRested = 0;
 global.iLifted = noone;

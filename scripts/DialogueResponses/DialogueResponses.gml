@@ -21,6 +21,9 @@ function DialogueResponses(response) {
 		case 10: {
 			NewTextBox("Bye!", 2);
 		}; break;
+		case 11: {
+			PurchaseItem(activate.item, activate.itemAmount, activate.itemCost);
+		}; break;
 		default: break;
 	}
 }
