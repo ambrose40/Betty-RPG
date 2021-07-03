@@ -107,9 +107,7 @@ for (var i = 1; i <= _playerEnergyMax; i++) {
 	draw_sprite(sEnergy, _imageIndex, RESOLUTION_W - ((_playerEnergyMax - i) * 14) - 24, 8);
 }
 
-if (global.gamePaused) && (global.iMap == 0) {
-	DrawCaption("PAUSE", "", RESOLUTION_W / 2, RESOLUTION_H / 2, 100, 40);
-} else if (global.iMap == 1) {
+if (global.iMap == 1) {
 	DrawCaption("MAP", GetRoomName(global.lastRoom), RESOLUTION_W / 2, RESOLUTION_H / 2, 100, 40);
 } else if (!global.gamePaused && instance_exists(oPlayer) && oPlayer.state == PlayerStateDead) {
 	DrawCaption("GAME OVER", global.deathReason, RESOLUTION_W / 2, RESOLUTION_H / 2, 100, 40);
@@ -127,4 +125,29 @@ if (keyboard_check(vk_f1)) {
 // Show stats
 if (keyboard_check(ord("C"))) {
 	DrawHelp("Coins: " + string(global.coinsAmount) + "\nHealth: " + string(global.playerHealth) + "\nEnergy: " + string(global.playerEnergy),  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
+}
+
+// Pause Screen
+if (global.gamePaused && global.iMap == 0) {
+	draw_set_color(c_black);
+	draw_set_alpha(0.75);
+	draw_rectangle(0, 0, RESOLUTION_W, RESOLUTION_H, false);
+	draw_set_alpha(1.0);
+	draw_set_color(c_white);
+	draw_set_font(fText);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	
+	draw_text(RESOLUTION_W * 0.5, RESOLUTION_H * 0.5, "...Game Paused...");
+	for (var i = 0; i < array_length(pauseOption); i++) {
+		var _print = "";
+		if (i == pauseOptionSelected) {
+			_print += "> " + pauseOption[i] + " <";
+		} else {
+			_print += pauseOption[i];
+			draw_set_alpha(0.7);
+		}
+		draw_text(RESOLUTION_W * 0.5, RESOLUTION_H * 0.5 + (18 + (i * 12)), _print);
+		draw_set_alpha(1.0);
+	}
 }
