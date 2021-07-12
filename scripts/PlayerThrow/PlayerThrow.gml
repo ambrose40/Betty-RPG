@@ -22,6 +22,9 @@ function PlayerThrow() {
 }
 
 function DropItem() {
+	with (global.iLifted) {
+		lifted = false;
+	}
 	global.iLifted = noone;
 	with (oPlayer) {
 		spriteIdle = sPlayer;

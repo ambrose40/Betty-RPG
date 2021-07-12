@@ -128,6 +128,21 @@ function CopyJsonBuffer(filename) {
 	show_debug_message("File (" + filename + ") succesfully copied!");
 }
 
+function CopyDefaultJsonBuffer(filename, newname) {
+	var _path = GetSavePath(filename, false);
+	var _buffer = buffer_load(_path);
+	var _string = buffer_read(_buffer, buffer_string);
+	buffer_delete(_buffer);
+	
+	var _buffer = buffer_create(string_byte_length(_string) + 1, buffer_fixed, 1);
+	var _path = GetSavePath(newname, true);
+	buffer_write(_buffer, buffer_string, _string);
+	buffer_save(_buffer, _path);
+	buffer_delete(_buffer);
+	
+	show_debug_message("File (" + filename + ") succesfully copied!");
+}
+
 function GetCurrentRoomName() {
 	if (global.iMap == 0) {
 		var roomname = room_get_name(room);

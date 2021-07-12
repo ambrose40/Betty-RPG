@@ -19,6 +19,7 @@ function SaveGame(_filename) {
 			direction : direction,
 			visible : visible,
 			persistent : persistent,
+			sprite_index : sprite_index,
 			bounce : bounce,
 			bounceCount : bounceCount,
 			bounceSpeed : bounceSpeed,
@@ -50,6 +51,7 @@ function SaveGame(_filename) {
 				direction : direction,
 				visible : visible,
 				persistent : persistent,
+				sprite_index : sprite_index,
 				// entity object part
 				old_id : old_id,
 				lifted : lifted,
@@ -110,6 +112,7 @@ function SaveGame(_filename) {
 				direction : direction,
 				visible : visible,
 				persistent : persistent,
+				sprite_index : sprite_index,
 				// entity object part
 				old_id : old_id,
 				lifted : lifted,
@@ -146,6 +149,7 @@ function SaveGame(_filename) {
 				direction : direction,
 				visible : visible,
 				persistent : persistent,
+				sprite_index : sprite_index,
 				// entity object part
 				old_id : old_id,
 				lifted : lifted,
@@ -290,6 +294,7 @@ function LoadRoom(_roomname, _latest) {
 					visible = _loadEntity.visible;
 					depth = _loadEntity.depth;
 					persistent = _loadEntity.persistent;
+					sprite_index = _loadEntity.sprite_index;
 					bounce = _loadEntity.bounce;
 					bounceCount = _loadEntity.bounceCount;
 					bounceSpeed = _loadEntity.bounceSpeed;
@@ -329,7 +334,7 @@ function LoadRoom(_roomname, _latest) {
 					visible = _loadEntity.visible;
 					depth = _loadEntity.depth;
 					persistent = _loadEntity.persistent;
-					
+					sprite_index = _loadEntity.sprite_index;
 					// entity object
 					old_id = _loadEntity.old_id;
 					lifted = _loadEntity.lifted;
@@ -440,7 +445,25 @@ function LoadRoom(_roomname, _latest) {
 					}
 				}
 			}
-			
+			if (global.iLifted != noone) {
+				_foundOldLifted = CheckFoundOldLifted("rBeach", global.iLifted) 
+									|| CheckFoundOldLifted("rBeachCamp", global.iLifted) 
+									|| CheckFoundOldLifted("rBeachTent", global.iLifted) 
+									|| CheckFoundOldLifted("rBeachShip", global.iLifted);
+				if (_foundOldLifted) {
+					with global.iLifted {
+						instance_destroy();
+					}
+					global.iLifted = noone;
+				} else {
+					with (oPlayer) {
+						spriteIdle = sPlayerCarry;
+						spriteRun = sPlayerRunCarry;
+						spriteRoll = sPlayerRunCarry;
+						sprite_index = spriteIdle;
+					}
+				}
+			}
 			
 			show_debug_message("Game loaded! " + _string);
 			global.gameLoad = false;
@@ -465,19 +488,43 @@ function SaveLatestGame() {
 	SaveGame("savegame");
 
 	if (file_exists(GetSavePath("rBeach", false))) {
-		CopyJsonBuffer("rBeach")
+		file_delete(GetSavePath("rBeach", true));
+		CopyJsonBuffer("rBeach");
 	}
 	if (file_exists(GetSavePath("rBeachCamp", false))) {
-		CopyJsonBuffer("rBeachCamp")
+		file_delete(GetSavePath("rBeachCamp", true));
+		CopyJsonBuffer("rBeachCamp");
 	}
 	if (file_exists(GetSavePath("rBeachShip", false))) {
-		CopyJsonBuffer("rBeachShip")
+		file_delete(GetSavePath("rBeachShip", true));
+		CopyJsonBuffer("rBeachShip");
 	}
 	if (file_exists(GetSavePath("rBeachTent", false))) {
-		CopyJsonBuffer("rBeachTent")
+		file_delete(GetSavePath("rBeachTent", true));
+		CopyJsonBuffer("rBeachTent");
 	}
 	if (file_exists(GetSavePath("savegame", false))) {
-		CopyJsonBuffer("savegame")
+		file_delete(GetSavePath("savegame", true));
+		CopyJsonBuffer("savegame");
+		CopyDefaultJsonBuffer("savegame",  GetCurrentRoomName());
+	}
+}
+
+function CopyGameToCurrent() {
+	if (file_exists(GetSavePath("rBeach", true))) {
+		file_copy(GetSavePath("rBeach", true), GetSavePath("rBeach", false));
+	}
+	if (file_exists(GetSavePath("rBeachCamp", true))) {
+		file_copy(GetSavePath("rBeachCamp", true), GetSavePath("rBeachCamp", false));
+	}
+	if (file_exists(GetSavePath("rBeachShip", true))) {
+		file_copy(GetSavePath("rBeachShip", true), GetSavePath("rBeachShip", false));
+	}
+	if (file_exists(GetSavePath("rBeachTent", true))) {
+		file_copy(GetSavePath("rBeachTent", true), GetSavePath("rBeachTent", false));
+	}
+	if (file_exists(GetSavePath("savegame", true))) {
+		file_copy(GetSavePath("savegame", true), GetSavePath("savegame", false));
 	}
 }
 

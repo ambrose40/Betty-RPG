@@ -36,8 +36,12 @@ function ActivateHatCat() {
 function CompleteHatCat() {
 	NewTextBox("You are true hero indeed!", 2);
 	global.questStatus[QUEST.THE_HAT_QUEST] = 2;
-	with (oNPC) sprite_index = sQuestieHat;
-	with (oHat) instance_destroy();
-		
+	with (oHatCat) sprite_index = sQuestieHat;
 	DropItem();
+	with (oHat) {
+		entityActivateScript = noone;
+		visible = false;
+		oHat.x = oNPC.x - 2;
+		oHat.y = oNPC.y - 13;
+	}
 }
