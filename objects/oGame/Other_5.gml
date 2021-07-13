@@ -5,7 +5,8 @@ if (!global.gameLoad) {
 	if (roomname == "rBeach" 
 	|| roomname == "rBeachCamp" 
 	|| roomname == "rBeachShip" 
-	|| roomname == "rBeachTent") {
+	|| roomname == "rBeachTent"
+	|| roomname == "rCave") {
 		SaveGame(roomname);
 	}
 }

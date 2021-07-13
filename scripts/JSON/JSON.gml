@@ -397,6 +397,7 @@ function LoadRoom(_roomname, _latest) {
 				_foundOldLifted = CheckFoundOldLifted("rBeach", _loadEntity) 
 									|| CheckFoundOldLifted("rBeachCamp", _loadEntity) 
 									|| CheckFoundOldLifted("rBeachTent", _loadEntity) 
+									|| CheckFoundOldLifted("rCave", _loadEntity) 
 									|| CheckFoundOldLifted("rBeachShip", _loadEntity);
 				if (_loadData.iLifted != noone && !_foundOldLifted) {
 					var asset_id = asset_get_index(_loadEntity.obj);
@@ -449,6 +450,7 @@ function LoadRoom(_roomname, _latest) {
 				_foundOldLifted = CheckFoundOldLifted("rBeach", global.iLifted) 
 									|| CheckFoundOldLifted("rBeachCamp", global.iLifted) 
 									|| CheckFoundOldLifted("rBeachTent", global.iLifted) 
+									|| CheckFoundOldLifted("rCave", global.iLifted) 
 									|| CheckFoundOldLifted("rBeachShip", global.iLifted);
 				if (_foundOldLifted) {
 					with global.iLifted {
@@ -480,6 +482,9 @@ function LoadRoom(_roomname, _latest) {
 			if (_roomname == "rBeachTent") {
 				global.isLatest[ROOMS.R_BEACH_TENT] = false;
 			}
+			if (_roomname == "rCave") {
+				global.isLatest[ROOMS.R_CAVE] = false;
+			}
 		}
 	}
 }
@@ -503,6 +508,10 @@ function SaveLatestGame() {
 		file_delete(GetSavePath("rBeachTent", true));
 		CopyJsonBuffer("rBeachTent");
 	}
+	if (file_exists(GetSavePath("rCave", false))) {
+		file_delete(GetSavePath("rCave", true));
+		CopyJsonBuffer("rCave");
+	}
 	if (file_exists(GetSavePath("savegame", false))) {
 		file_delete(GetSavePath("savegame", true));
 		CopyJsonBuffer("savegame");
@@ -522,6 +531,9 @@ function CopyGameToCurrent() {
 	}
 	if (file_exists(GetSavePath("rBeachTent", true))) {
 		file_copy(GetSavePath("rBeachTent", true), GetSavePath("rBeachTent", false));
+	}
+	if (file_exists(GetSavePath("rCave", true))) {
+		file_copy(GetSavePath("rCave", true), GetSavePath("rCave", false));
 	}
 	if (file_exists(GetSavePath("savegame", true))) {
 		file_copy(GetSavePath("savegame", true), GetSavePath("savegame", false));
@@ -544,4 +556,15 @@ function CheckFoundOldLifted(_roomname, _loadEntity) {
 		}
 	}
 	return _foundOldLifted;
+}
+
+function LoadLatestGame() {
+	global.gameLoad = true;
+	// global.isLatest[ROOMS.R_BEACH] = true;
+	// global.isLatest[ROOMS.R_BEACH_CAMP] = true;
+	// global.isLatest[ROOMS.R_BEACH_SHIP] = true;
+	// global.isLatest[ROOMS.R_BEACH_TENT] = true;
+	// global.isLatest[ROOMS.R_CAVE] = true;
+	CopyGameToCurrent();
+	LoadGame("savegame", true);
 }

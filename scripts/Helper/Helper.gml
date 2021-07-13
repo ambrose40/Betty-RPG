@@ -13,7 +13,7 @@ function NineSliceBoxStretched(_sprite, _x1, _y1, _x2, _y2, _index) {
 	var _h = _y2 - _y1;
 
 	// MIDDLE
-	draw_sprite_part_ext(_sprite, _index, _size, _size, 1, 1, _x1+_size, _y1+_size, _w-(_size*2), _h-(_size*2), c_white,1);
+	draw_sprite_part_ext(_sprite, _index, _size, _size, 1, 1, _x1+_size, _y1+_size, _w-(_size*2), _h-(_size*2), c_white, draw_get_alpha());
 
 	// CORNERS
 	//top left
@@ -27,13 +27,13 @@ function NineSliceBoxStretched(_sprite, _x1, _y1, _x2, _y2, _index) {
 
 	//EDGES
 	//left edge
-	draw_sprite_part_ext(_sprite, _index, 0, _size, _size, 1, _x1, _y1+_size, 1, _h-(_size*2), c_white,1);
+	draw_sprite_part_ext(_sprite, _index, 0, _size, _size, 1, _x1, _y1+_size, 1, _h-(_size*2), c_white, draw_get_alpha());
 	//right edge
-	draw_sprite_part_ext(_sprite, _index, _size*2, _size, _size, 1, _x1+_w-_size, _y1+_size , 1, _h-(_size*2), c_white, 1);
+	draw_sprite_part_ext(_sprite, _index, _size*2, _size, _size, 1, _x1+_w-_size, _y1+_size , 1, _h-(_size*2), c_white, draw_get_alpha());
 	//top edge
-	draw_sprite_part_ext(_sprite, _index, _size, 0, 1, _size, _x1+_size, _y1, _w-(_size*2), 1, c_white,1);
+	draw_sprite_part_ext(_sprite, _index, _size, 0, 1, _size, _x1+_size, _y1, _w-(_size*2), 1, c_white, draw_get_alpha());
 	//bottom edge
-	draw_sprite_part_ext(_sprite, _index, _size, _size*2, 1, _size, _x1+_size, _y1+_h-(_size), _w-(_size*2), 1, c_white,1);
+	draw_sprite_part_ext(_sprite, _index, _size, _size*2, 1, _size, _x1+_size, _y1+_h-(_size), _w-(_size*2), 1, c_white, draw_get_alpha());
 }
 
 function DrawCaption(text, subText, oX, oY, w, h) {
@@ -73,6 +73,8 @@ function GetRoomName(room) {
 		return "Ship Harbor";
 	} else if (room == rBeachTent) {
 		return "Inside tent";
+	} else if (room == rCave) {
+		return "Dangerous Cave";
 	}
 }
 
@@ -83,13 +85,33 @@ function CurrentTimeString() {
 function GetSavePath(filename, _latest) {
 	var _dir_name = global.saveFolder;
 	if (_latest) {
-		_dir_name = "Save_latest";
+		// var _folderName = "save" + string(_slot) + ".sav";
+		_dir_name = "save" + string(global.gameSaveSlot) + ".sav";
 	} 
 	if !directory_exists(_dir_name) {
 		directory_create(_dir_name);
 	}
 	var _path = _dir_name + "\\" + filename + ".json";
 	return _path;
+}
+
+function GetSavePathWithSlot(filename, _dir_name) {
+	if !directory_exists(_dir_name) {
+		directory_create(_dir_name);
+	}
+	var _path = _dir_name + "\\" + filename + ".json";
+	return _path;
+}
+
+function ReadJsonBufferWithSlot(_filename, _dir_name) {
+	var _path = GetSavePathWithSlot(_filename, _dir_name);
+	var _buffer = buffer_load(_path);
+	var _string = buffer_read(_buffer, buffer_string);
+	buffer_delete(_buffer);
+	
+	show_debug_message("File (" + _filename + ") succesfully read!");
+	
+	return _string;
 }
 
 function SaveJsonBuffer(_string, _filename) {
@@ -151,4 +173,15 @@ function GetCurrentRoomName() {
 	}
 	
 	return roomname;
+}
+
+function RoomToAreaName(_room) {
+	switch(_room) {
+		case "rCave": return "Dangerous Cave"; break;
+		case "rBeach": return "Beach"; break;
+		case "rBeachShip": return "Ship Harbour"; break;
+		case "rBeachTent": return "Inside tent"; break;
+		case "rBeachCamp": return "Camping site"; break;
+		default: return "Unknown Area"; break;
+	}
 }

@@ -1,6 +1,6 @@
 /// @desc Pause the Game
 
-if (keyboard_check_pressed(vk_pause) && global.iMap == 0) {
+if (keyboard_check_pressed(vk_pause) && global.iMap == 0 && oUI.visible != false) {
 	global.gamePaused = !global.gamePaused;
 	if (global.gamePaused) {
 		with (all) {

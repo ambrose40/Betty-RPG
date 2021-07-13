@@ -1,7 +1,7 @@
 #macro FRAME_RATE 60
 #macro TILE_SIZE 8
 #macro CARDINAL_DIR round(direction/90)
-#macro ROOM_START rBeach
+#macro ROOM_START rTitle
 
 #macro RESOLUTION_W 320	
 #macro RESOLUTION_H 180
@@ -54,5 +54,6 @@ enum ROOMS {
 	R_BEACH_CAMP,
 	R_BEACH_SHIP,
 	R_BEACH_TENT,
+	R_CAVE,
 	TYPE_COUNT
 }

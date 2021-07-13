@@ -1,3 +1,9 @@
+if (room == rTitle) {
+	visible = false;
+} else {
+	visible = true;
+}
+
 if (global.gamePaused) {
 	keyUp = keyboard_check_pressed(vk_up);
 	keyDown = keyboard_check_pressed(vk_down);

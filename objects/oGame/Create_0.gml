@@ -50,6 +50,7 @@ global.snd = -1;
 
 global.iMap = 0;
 global.lastRoom = -1;
+global.gameSaveSlot = 1;
 surface_resize(application_surface,RESOLUTION_W,RESOLUTION_H);
 display_set_gui_size(RESOLUTION_W, RESOLUTION_H);
 global.iCamera = instance_create_layer(0, 0, layer, oCamera);

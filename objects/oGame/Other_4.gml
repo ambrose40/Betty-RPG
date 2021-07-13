@@ -17,3 +17,8 @@ if (roomname == "rBeachShip") {
 if (roomname == "rBeachTent") {
 	LoadRoom(roomname, global.isLatest[ROOMS.R_BEACH_TENT]);
 }
+if (roomname == "rCave") {
+	LoadRoom(roomname, global.isLatest[ROOMS.R_CAVE]);
+}
+
+loadingStarted = false;
