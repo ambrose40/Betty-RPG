@@ -1,4 +1,4 @@
-x = display_get_gui_width() - w - 10;
+UpdateMinimapLayout();
 if (!surface_exists(surfMinimapBg)) {
 	if (!RefreshMapBG()) exit;
 }
@@ -11,14 +11,11 @@ draw_surface(surfMinimapBg, x, y);
 // Scale both the viewport and live markers to this room, including small interiors.
 var _scaleX = w / room_width;
 var _scaleY = h / room_height;
-var _cam = view_camera[0];
-if (_cam != -1) {
-	var _left = clamp(camera_get_view_x(_cam), 0, room_width);
-	var _top = clamp(camera_get_view_y(_cam), 0, room_height);
-	var _right = clamp(camera_get_view_x(_cam) + camera_get_view_width(_cam), _left, room_width);
-	var _bottom = clamp(camera_get_view_y(_cam) + camera_get_view_height(_cam), _top, room_height);
-	draw_sprite_stretched(sMinimapView, 0, x + _left * _scaleX, y + _top * _scaleY,
-		(_right - _left) * _scaleX, (_bottom - _top) * _scaleY);
+var _view = GetMinimapViewport();
+if (!is_undefined(_view) && _view.width > 0 && _view.height > 0) {
+	draw_rectangle(x + _view.x, y + _view.y,
+		x + _view.x + max(0, _view.width - 1),
+		y + _view.y + max(0, _view.height - 1), true);
 }
 
 var _mapX = x;

@@ -1,11 +1,44 @@
-// Keep the map compact while preserving the room's aspect ratio.
+// Keep the map proportional to the GUI while preserving the room's aspect ratio.
 depth = 10000; // Draw before the HUD, dialogue and transition overlays.
 surfMinimapBg = -1;
-var _scale = min(1 / TILE_SIZE, 80 / room_width, 60 / room_height);
-w = max(1, floor(room_width * _scale));
-h = max(1, floor(room_height * _scale));
-x = display_get_gui_width() - w - 10;
-y = 10;
+w = 0;
+h = 0;
+
+function UpdateMinimapLayout() {
+	var _guiWidth = display_get_gui_width();
+	var _guiHeight = display_get_gui_height();
+	var _maxWidth = max(1, floor(_guiWidth / 4));
+	var _maxHeight = max(1, floor(_guiHeight / 3));
+	var _scale = min(_maxWidth / room_width, _maxHeight / room_height);
+	var _width = max(1, floor(room_width * _scale));
+	var _height = max(1, floor(room_height * _scale));
+	if (w != _width || h != _height) {
+		if (surface_exists(surfMinimapBg)) surface_free(surfMinimapBg);
+		surfMinimapBg = -1;
+		w = _width;
+		h = _height;
+	}
+	x = _guiWidth - w - 10;
+	y = 10;
+}
+
+// Camera coverage expressed in map pixels, clipped to the room's available area.
+function GetMinimapViewport() {
+	var _cam = view_camera[0];
+	if (_cam == -1) return undefined;
+	var _left = clamp(camera_get_view_x(_cam), 0, room_width);
+	var _top = clamp(camera_get_view_y(_cam), 0, room_height);
+	var _right = clamp(camera_get_view_x(_cam) + camera_get_view_width(_cam), _left, room_width);
+	var _bottom = clamp(camera_get_view_y(_cam) + camera_get_view_height(_cam), _top, room_height);
+	return {
+		x: _left * w / room_width,
+		y: _top * h / room_height,
+		width: (_right - _left) * w / room_width,
+		height: (_bottom - _top) * h / room_height
+	};
+}
+
+UpdateMinimapLayout();
 
 // Build the background lazily in Draw GUI, when surfaces can be rendered safely.
 function RefreshMapBG() {

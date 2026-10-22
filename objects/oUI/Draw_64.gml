@@ -19,7 +19,8 @@ if (global.playerHasAnyItems) {
 		case ITEM.HOOK: _weaponText = "Hook"; break;
 		default: _weaponText = "No weapon"; break;
 	}
-	if (global.playerAmmo[global.playerEquipped] != -1) {
+	if ((global.playerEquipped == ITEM.BOMB || global.playerEquipped == ITEM.BOW)
+		&& global.playerAmmo[global.playerEquipped] != -1) {
 		_weaponText += " x" + string(global.playerAmmo[global.playerEquipped]);
 	}
 }
@@ -78,11 +79,7 @@ for (var i = 1; i <= _playerEnergyMax; i++) {
 		_imageIndex += (_playerEnergyFrac > 0.857142857);
 		_imageIndex += (_playerEnergyFrac > 0.928571429);
 	}
-	var _energyX = 8 + ((i - 1) * 16);
-	draw_sprite_ext(sEnergy, _imageIndex, _energyX, 25, 1, 0.5, 0, c_white, 1);
-	draw_set_colour(c_black);
-	draw_rectangle(_energyX - 1, 24, _energyX + 14, 32, true);
-	draw_set_colour(c_white);
+	draw_sprite(sEnergy, _imageIndex, 8 + ((i - 1) * 14), 22);
 }
 
 if (global.iMap == 1) {

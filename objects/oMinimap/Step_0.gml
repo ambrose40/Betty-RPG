@@ -1,5 +1,5 @@
 // The minimap is in GUI coordinates, independent of the world camera/fullscreen.
-x = display_get_gui_width() - w - 10;
+UpdateMinimapLayout();
 if (global.gamePaused) exit;
 var _mx = device_mouse_x_to_gui(0);
 var _my = device_mouse_y_to_gui(0);

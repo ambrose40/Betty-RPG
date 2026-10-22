@@ -66,19 +66,26 @@ collision layout still need normal playtesting.
   a duplicate where the room already contains one.
 - Cache all visible tile/background layers in depth order instead of requiring a
   layer named `Beach`. Collision layers remain excluded.
-- Anchor the minimap to the top-right GUI corner, with a maximum map area of
-  80 by 60 GUI pixels and the room's aspect ratio preserved.
+- Anchor the minimap to the top-right GUI corner. Its available area is one quarter
+  of the current GUI width by one third of its height (80 by 60 at the default
+  resolution), with the room's aspect ratio preserved. Recalculate the layout and
+  invalidate the cached surface when its size changes.
 - Scale the camera outline and live enemy/player markers to each room. The player
   is green; enemies are red. Mouse interaction uses GUI coordinates and the
   actual room-to-map scale.
 - Recreate lost surfaces and release cached surfaces in the minimap Clean Up
   event. Remove the redundant per-frame entity surface and application-surface
   resize from the old minimap implementation.
-- Group hearts, compact energy bars, weapon icon/name/ammo, and coins at the
-  top-left. Show weapon ammunition beside the icon rather than over it.
+- Group hearts, the original continuous blue/black energy bar, weapon
+  icon/name/ammo, and coins at the top-left. Show consumable weapon ammunition
+  beside the icon rather than over it; the grappling hook never shows a count.
 - Passed 70 in-engine checks over beach, camp, ship, tent, cave, world map, and a
   return to beach. Checks covered one minimap per active room, valid cached
   rendering, size limits, top-right positioning, HUD visibility, and recovery
   after explicitly freeing the minimap surface. Screenshots were also inspected
   for the room backgrounds and final HUD layout. Temporary audit hooks were
   removed after validation.
+- A further 70 runtime checks passed over seven GUI/camera/room profiles. These
+  verified live resizing at 320x180, 640x360 and 480x270 GUI sizes; cache dimensions;
+  camera coverage smaller/larger than the room and clipped/off-room viewports;
+  and the exact `Hook`, `Bow x12` and `Bomb x4` HUD labels, including hook ammo zero.
