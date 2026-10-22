@@ -43,7 +43,7 @@
   ],
   "isDnd":false,
   "layers":[
-    {"$GMRInstanceLayer":"","%Name":"Instances","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
+    {"$GMRInstanceLayer":"","%Name":"Instances","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":false,"instances":[
         {"$GMRInstance":"v4","%Name":"inst_4560A2D6","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4560A2D6","objectId":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":112.0,"y":80.0,},
         {"$GMRInstance":"v4","%Name":"Captain_Hank","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"Captain_Hank","objectId":{"name":"oNPC","path":"objects/oNPC/oNPC.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"propertyId":{"name":"entityActivateScript","path":"objects/pEntity/pEntity.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"NewTextBox",},
@@ -119,10 +119,10 @@
           -44,2,-34,0,-10,-2147483648,-10,0,4,-2147483648,0,0,-2147483648,-20,0,-10,-2147483648,-18,0,4,-2147483648,
           0,-2147483648,0,-22,-2147483648,-20,0,-24,-2147483648,-20,0,2,-2147483648,0,-22,-2147483648,-18,0,2,
           -2147483648,0,-24,-2147483648,-15,0,1,-2147483648,-22,0,-6,-2147483648,-26,0,-12,2,-6,-2147483648,-26,
-          0,1,2,-10,0,1,2,-6,-2147483648,-26,0,1,2,-10,0,1,2,-6,-2147483648,-26,0,1,2,-10,0,1,2,-6,-2147483648,
-          -26,0,1,2,-10,0,1,2,-6,-2147483648,-26,0,2,2,0,-8,2,2,0,2,-6,-2147483648,-26,0,1,2,-10,0,1,2,-6,-2147483648,
-          -26,0,1,2,-10,0,1,2,-6,-2147483648,-26,0,-2,2,-9,0,1,2,-10,-2147483648,-22,0,-6,2,-2,0,-4,2,-10,-2147483648,
-          -34,0,-10,-2147483648,1,0,-5,-2147483648,-19,0,4,-2147483648,0,-2147483648,-2147483648,-4,0,-7,-2147483648,
+          0,-12,2,-6,-2147483648,-26,0,-2,2,-8,0,-2,2,-6,-2147483648,-26,0,-2,2,-8,0,-2,2,-6,-2147483648,-26,0,
+          -12,2,-6,-2147483648,-26,0,-12,2,-6,-2147483648,-26,0,-2,2,-8,0,-2,2,-6,-2147483648,-26,0,-2,2,-8,0,
+          -2,2,-6,-2147483648,-26,0,-2,2,-8,0,-2,2,-10,-2147483648,-22,0,-6,2,-2,0,-4,2,-10,-2147483648,-34,0,
+          -10,-2147483648,1,0,-5,-2147483648,-19,0,4,-2147483648,0,-2147483648,-2147483648,-4,0,-7,-2147483648,
           -7,2,-2,-2147483648,-28,0,-7,-2147483648,-8,2,-29,0,-7,-2147483648,-13,2,-4,-2147483648,-6,2,-14,0,-2,
           -2147483648,-4,2,1,-2147483648,-13,2,-4,-2147483648,-7,2,-13,0,1,-2147483648,-19,2,-4,-2147483648,-7,
           2,-4,-2147483648,-9,0,1,-2147483648,-19,2,-4,-2147483648,-7,2,-5,-2147483648,-8,0,1,-2147483648,-19,
@@ -161,7 +161,7 @@
           229,1,110,-16,157,2,246,286,-3,362,1,253,-16,157,1,88,-5,362,1,217,-15,157,2,213,70,-3,362,1,46,-17,
           157,1,213,-3,76,1,191,-34,157,-154,148,
         ],"TileDataFormat":1,},"tilesetId":{"name":"tBeach","path":"tilesets/tBeach/tBeach.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
-    {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4278190080,"depth":600,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
+    {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4278190080,"depth":600,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":false,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
   "name":"rBeach",
   "parent":{
