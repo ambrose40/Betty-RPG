@@ -15,14 +15,11 @@ if (global.gamePaused) {
 	if (keyActivate) {
 		switch (pauseOptionSelected) {
 			case 0: { // Continue
-				global.gamePaused = false;
-				with (all) {
-					gamePausedImageSpeed = image_speed;
-					image_speed = 0;
-				}
+				SetGamePaused(false);
 			} 
 			break;
 			case 1: { // Save and quit
+				SetGamePaused(false);
 				global.gameSave = true;
 				SaveLatestGame();
 				with (oGame) instance_destroy();
@@ -30,6 +27,7 @@ if (global.gamePaused) {
 			}
 			break;
 			case 2: { // Save and quit to desktop
+				SetGamePaused(false);
 				global.gameSave = true;
 				SaveLatestGame();
 				game_end();

@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "BotStates",
-    "path": "folders/Scripts/BotStates.yy",
+  "$GMScript":"v1",
+  "%Name":"BotStateRoll",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"BotStateRoll",
+  "parent":{
+    "name":"BotStates",
+    "path":"folders/Scripts/BotStates.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "BotStateRoll",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

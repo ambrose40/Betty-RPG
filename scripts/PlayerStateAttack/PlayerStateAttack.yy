@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "PlayerStates",
-    "path": "folders/Scripts/PlayerStates.yy",
+  "$GMScript":"v1",
+  "%Name":"PlayerStateAttack",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PlayerStateAttack",
+  "parent":{
+    "name":"PlayerStates",
+    "path":"folders/Scripts/PlayerStates.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "PlayerStateAttack",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

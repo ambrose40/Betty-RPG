@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "PlayerAttack",
-    "path": "folders/Scripts/PlayerAttack.yy",
+  "$GMScript":"v1",
+  "%Name":"PlayerAttackFuncs",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PlayerAttackFuncs",
+  "parent":{
+    "name":"PlayerAttack",
+    "path":"folders/Scripts/PlayerAttack.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "PlayerAttackFuncs",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,22 +1,15 @@
-//Probably do this kind of thing from a dedicated mouse control system/object rather than here!
-var _mx = mouse_x - camera_get_view_x(view_camera[0]);
-var _my = mouse_y - camera_get_view_y(view_camera[0]);
-if (mouse_check_button(mb_left)) 
-{
-	if (point_in_rectangle(_mx,_my,x,y,x+w,y+h))
-	{
-		with (oCamera)
-		{
-			x = (_mx - other.x) * TILE_SIZE;
-			y = (_my - other.y) * TILE_SIZE;
-			xTo = x;
-			yTo = y;
-			
-		}
+// The minimap is in GUI coordinates, independent of the world camera/fullscreen.
+x = display_get_gui_width() - w - 10;
+if (global.gamePaused) exit;
+var _mx = device_mouse_x_to_gui(0);
+var _my = device_mouse_y_to_gui(0);
+if (mouse_check_button(mb_left) && point_in_rectangle(_mx, _my, x, y, x + w, y + h)) {
+	var _worldX = (_mx - x) * room_width / w;
+	var _worldY = (_my - y) * room_height / h;
+	with (oCamera) {
+		x = _worldX;
+		y = _worldY;
+		xTo = x;
+		yTo = y;
 	}
 }
-		
-		
-		
-		
-		

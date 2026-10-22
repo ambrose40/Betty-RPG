@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "EntityHit",
-    "path": "folders/Scripts/EntityHit.yy",
+  "$GMScript":"v1",
+  "%Name":"EntityHitSolid",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"EntityHitSolid",
+  "parent":{
+    "name":"EntityHit",
+    "path":"folders/Scripts/EntityHit.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "EntityHitSolid",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

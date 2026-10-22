@@ -13,6 +13,10 @@ keyRest = keyboard_check(vk_home);
 
 keyItemSelectUp = keyboard_check_pressed(ord("E"));
 keyItemSelectDown = keyboard_check_pressed(ord("Q"));
+keyItemSelect = ITEM.NONE;
+if (keyboard_check_pressed(ord("1"))) keyItemSelect = ITEM.BOMB;
+if (keyboard_check_pressed(ord("2"))) keyItemSelect = ITEM.BOW;
+if (keyboard_check_pressed(ord("3"))) keyItemSelect = ITEM.HOOK;
 
 inputDirection = point_direction(0,0,keyRight-keyLeft,keyDown-keyUp);
 inputMagnitude = (keyRight - keyLeft != 0) || (keyDown - keyUp != 0);

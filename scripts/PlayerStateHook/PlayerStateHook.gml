@@ -9,6 +9,7 @@ function PlayerStateHook() {
 		hookY = 0;
 		hookStatus = HOOKSTATUS.EXTENDING;
 		hookedEntity = noone;
+		hookedCollectible = false;
 		
 		// Update sprite
 		sprite_index = sPlayerHook;
@@ -107,7 +108,7 @@ function PlayerStateHook() {
 	// Finish retract and end state
 	if (hook <= 0) {
 		
-		if (!hookedCollectible && hookedEntity != noone && hookedEntity.entityHookable == 3) {
+		if (!hookedCollectible && instance_exists(hookedEntity) && hookedEntity.entityHookable == 3) {
 			ActivateLiftable(hookedEntity);
 		}
 		hookedCollectible = false;

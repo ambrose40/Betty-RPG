@@ -18,7 +18,4 @@ function DropItems(argument0, argument1, argument2) {
 		}
 	} 
 	
-	if (_items <= 0) {
-		instance_create_layer(argument0,argument1,"Instances",argument2[0]);
-	}
 }

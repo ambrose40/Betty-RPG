@@ -36,12 +36,22 @@ function ActivateHatCat() {
 function CompleteHatCat() {
 	NewTextBox("You are true hero indeed!", 2);
 	global.questStatus[QUEST.THE_HAT_QUEST] = 2;
-	with (oHatCat) sprite_index = sQuestieHat;
+	// Room instances receive new IDs when restored from a save.
+	var _hatOwner = noone;
+	with (oNPC) {
+		if (entityActivateScript == ActivateHatCat) {
+			sprite_index = sQuestieHat;
+			_hatOwner = id;
+		}
+	}
 	DropItem();
 	with (oHat) {
-		entityActivateScript = noone;
+		entityActivateScript = -1;
 		visible = false;
-		oHat.x = oNPC.x - 2;
-		oHat.y = oNPC.y - 13;
+		persistent = false;
+		if (instance_exists(_hatOwner)) {
+			x = _hatOwner.x - 2;
+			y = _hatOwner.y - 13;
+		}
 	}
 }

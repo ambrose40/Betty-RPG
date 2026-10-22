@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "PlayerStates",
-    "path": "folders/Scripts/PlayerStates.yy",
+  "$GMScript":"v1",
+  "%Name":"PlayerStateFree",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PlayerStateFree",
+  "parent":{
+    "name":"PlayerStates",
+    "path":"folders/Scripts/PlayerStates.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "PlayerStateFree",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

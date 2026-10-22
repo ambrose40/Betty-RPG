@@ -21,4 +21,11 @@ if (roomname == "rCave") {
 	LoadRoom(roomname, global.isLatest[ROOMS.R_CAVE]);
 }
 
+// Each room owns its minimap and cached background surface.
+if (room != rInit && room != rTitle && room != rParent) {
+	if (!instance_exists(oMinimap)) {
+		instance_create_depth(0, 0, 10000, oMinimap);
+	}
+}
+
 loadingStarted = false;

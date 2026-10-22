@@ -1,4 +1,5 @@
 /// @description Hit things
+if (global.gamePaused) exit;
 
 var _entity = instance_place(x, y, pEntity);
 var _break = false;

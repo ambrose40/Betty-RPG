@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "BotStates",
-    "path": "folders/Scripts/BotStates.yy",
+  "$GMScript":"v1",
+  "%Name":"BotStateLocked",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"BotStateLocked",
+  "parent":{
+    "name":"BotStates",
+    "path":"folders/Scripts/BotStates.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "BotStateLocked",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
