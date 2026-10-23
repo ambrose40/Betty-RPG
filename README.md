@@ -19,7 +19,10 @@ To build, edit, or debug the source, open
 - [Debug the game](#debug-the-game)
 - [Command-line build](#command-line-build)
 - [Project structure](#project-structure)
+- [Architecture overview](#architecture-overview)
 - [Current limitations](#current-limitations)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Launch the game
 
@@ -377,11 +380,41 @@ a standalone Windows build.
 | `options/` | Game and platform build settings. `options/html5/` is configuration, not a generated HTML5 export. |
 | `datafiles/` | Included-data directory; consult the `.yyp` for resources actually included in a build. |
 | `CODE_REVIEW.md` | Migration fixes, save compatibility notes, and validation history. |
+| `.agents/MEMORY.md` | Maintained project context, implementation details, and behavior to preserve. |
+| `CONTRIBUTING.md` | Development workflow, coding conventions, issue reports, and pull-request guidance. |
+| `LICENSE` | MIT license. |
 
 Open resource definitions through GameMaker where practical. Several directories
 contain legacy/backup files; the `.yyp` resource list determines what the project
 uses. The old top-level `html5/` export and `support/` source-asset collections
 were removed during repository cleanup.
+
+## Architecture overview
+
+The game uses GML object events and script functions, with GameMaker resource
+metadata connecting the code, rooms, and assets:
+
+- **Initialization and room lifecycle:** `oGame` initializes shared globals and
+  the GUI, enters `ROOM_START`, and handles room restoration and minimap creation
+  at Room Start. Startup and resolution constants live in `scripts/MACROS/MACROS.gml`.
+- **Player state machine:** `oPlayer` reads keyboard input in Step and executes its
+  current state function while unpaused. `PlayerStateFree` handles movement,
+  interaction, weapon selection, and item use; other `PlayerState*` scripts handle
+  actions such as rolling, attacking, grappling, and death.
+- **World entities:** `pEntity`, `pEnemy`, and `pCollectible` provide shared object
+  hierarchies. Activation and hit callbacks connect entities to interaction,
+  combat, loot, and quest functions.
+- **Presentation:** `oCamera` controls the view, `oUI` draws the HUD and overlays,
+  and each playable room owns an `oMinimap` with a cached terrain/background
+  surface and live player/enemy markers.
+- **Persistence and pause:** `scripts/JSON/JSON.gml` serializes game and room state.
+  `scripts/Helper/Helper.gml` provides save-path/buffer helpers and the shared
+  `SetGamePaused` function. Session room snapshots and numbered checkpoints serve
+  different purposes, as described in [Saves and captured files](#saves-and-captured-files).
+
+When adding resources, keep the `.yyp` resource references, `.yy` definitions, and
+object event registrations consistent. See [CONTRIBUTING.md](CONTRIBUTING.md) for
+the development workflow and regression checks.
 
 ## Current limitations
 
@@ -398,3 +431,13 @@ were removed during repository cleanup.
   full packaged-build playthrough have not been validated by the source-code
   audits. Use the distribution tests above. The `_arm` packages currently contain
   x64 game executables, so native ARM64 support is not yet established.
+
+## Contributing
+
+Bug reports, gameplay fixes, documentation improvements, and playtesting are
+welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) for setup, GML/resource conventions,
+validation expectations, and what to include in an issue or pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
