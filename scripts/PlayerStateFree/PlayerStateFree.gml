@@ -61,7 +61,7 @@ function PlayerStateFree() {
 		// If the first instance we find is either our lifted entity or has no script, try the next one.
 		while (_entitiesFound > 0) {
 			var _check = _activateList[| --_entitiesFound];
-			if (_check != global.iLifted) && (_check.entityActivateScript != -1) {
+			if (_check != global.iLifted) && (_check.visible) && (_check.entityActivateScript != -1) {
 				activate = _check;
 				break;
 			}
@@ -82,7 +82,7 @@ function PlayerStateFree() {
 			ScriptExecuteArray(activate.entityActivateScript, activate.entityActivateArgs);
 		
 			// Make an npc face the player
-			if (activate.entityNPC) {
+			if (instance_exists(activate) && activate.entityNPC) {
 				with (activate) {
 					direction = point_direction(x,y,other.x,other.y);
 					image_index = CARDINAL_DIR
@@ -91,6 +91,31 @@ function PlayerStateFree() {
 		}
 	}
 	
+	// Select unlocked weapons before using the equipped weapon.
+	if (global.playerHasAnyItems) {
+		var _cycleDirection = keyItemSelectUp - keyItemSelectDown;
+		if (_cycleDirection != 0) {
+			var _candidate = global.playerEquipped;
+			for (var _attempt = 1; _attempt < ITEM.TYPE_COUNT; _attempt++) {
+				_candidate += _cycleDirection;
+				if (_candidate < 1) {
+					_candidate = ITEM.TYPE_COUNT - 1;
+				}
+				
+				if (_candidate >= ITEM.TYPE_COUNT) {
+					_candidate = 1;
+				}
+				if (global.playerItemUnlocked[_candidate]) {
+					global.playerEquipped = _candidate;
+					break;
+				}
+			}
+		}
+		if (keyItemSelect != ITEM.NONE && global.playerItemUnlocked[keyItemSelect]) {
+			global.playerEquipped = keyItemSelect;
+		}
+	}
+
 	// Use items
 	if (keyItem) && (!keyActivate) && (global.playerHasAnyItems) && (global.playerEquipped != ITEM.NONE) {
 		switch (global.playerEquipped) {
@@ -98,24 +123,6 @@ function PlayerStateFree() {
 			case ITEM.BOW: UseItemBow();	break;
 			case ITEM.HOOK: UseItemHook();	break;
 			default: break;
-		}
-	}	
-	
-	// Cycle items
-	if (global.playerHasAnyItems) {
-		var _cycleDirection = keyItemSelectUp - keyItemSelectDown;
-		if (_cycleDirection != 0) {
-			do {
-				global.playerEquipped += _cycleDirection;
-				if (global.playerEquipped < 1) {
-					global.playerEquipped = ITEM.TYPE_COUNT - 1;
-				}
-				
-				if (global.playerEquipped >= ITEM.TYPE_COUNT) {
-					global.playerEquipped = 1;
-				}
-			}
-			until (global.playerItemUnlocked[global.playerEquipped]);
 		}
 	}
 		

@@ -169,6 +169,17 @@ function SaveGame(_filename) {
 				entityThrowDistance : entityThrowDistance,	
 			};
 		}
+		_saveEntity.image_index = image_index;
+		// Preserve in-flight throws and bomb fuses as well as their visible position.
+		_saveEntity.runtimeState = {};
+		var _fields = ["grav", "throwPeakHeight", "throwDistance", "throwDistanceTravelled",
+			"throwStartPercent", "throwPercent", "bombStage", "bombTick"];
+		for (var _i = 0; _i < array_length(_fields); _i++) {
+			var _field = _fields[_i];
+			if (variable_instance_exists(id, _field)) {
+				variable_struct_set(_saveEntity.runtimeState, _field, variable_instance_get(id, _field));
+			}
+		}
 		if (_saveEntity.lifted <= 0.0) {
 			array_push(_saveData, _saveEntity);
 		} else {
@@ -257,6 +268,7 @@ function LoadGame(filename, _latest) {
 }
 
 function LoadRoom(_roomname, _latest) {
+	var _loadingGame = global.gameLoad;
 	if (global.gameLoad) {
 		_roomname = "savegame";
 	}
@@ -267,7 +279,7 @@ function LoadRoom(_roomname, _latest) {
 		if (room == asset_get_index(_loadData.currentRoom)) {
 			with (pEntity) {
 				if (!lifted) {
-					instance_destroy();
+					instance_destroy(id, false);
 					show_debug_message("instance_destroy " + object_get_name(object_index));
 				}
 			}
@@ -280,7 +292,7 @@ function LoadRoom(_roomname, _latest) {
 			while (array_length(_loadData.fragments) > 0) {
 				var _loadEntity = array_pop(_loadData.fragments);
 				var asset_id = asset_get_index(_loadEntity.obj);
-				var obj_id = instance_create_layer(0, 0, layer, asset_id);
+				var obj_id = instance_create_layer(_loadEntity.x, _loadEntity.y, layer, asset_id);
 				with (obj_id) {		
 					// general object
 					y = _loadEntity.y;
@@ -310,13 +322,17 @@ function LoadRoom(_roomname, _latest) {
 			while (array_length(_loadData.entities) > 0) {
 				var _loadEntity = array_pop(_loadData.entities);
 				var asset_id = asset_get_index(_loadEntity.obj);
-				var obj_id = instance_create_layer(0, 0, layer, asset_id);
+				var _creationVars = {};
+				if (asset_id == oShopItem) _creationVars.item = _loadEntity.item;
+				var obj_id = instance_create_layer(_loadEntity.x, _loadEntity.y, layer, asset_id, _creationVars);
 				with (obj_id) {				
 					if (_loadEntity.obj == "oPlayer") {
 						state = PlayerStateFree;
-						global.targetXPlayer = _loadData.saveXPlayer;
-						global.targetYPlayer = _loadData.saveYPlayer;
-						global.targetDirectionPlayer = _loadData.saveDirection;
+						if (_loadingGame) {
+							global.targetXPlayer = _loadData.saveXPlayer;
+							global.targetYPlayer = _loadData.saveYPlayer;
+							global.targetDirectionPlayer = _loadData.saveDirection;
+						}
 					}
 					if (_loadEntity.obj == "oBot") {
 						state = BotStateFree;
@@ -340,13 +356,15 @@ function LoadRoom(_roomname, _latest) {
 					lifted = _loadEntity.lifted;
 					thrown = _loadEntity.thrown;
 					entityActivateType = _loadEntity.entityActivateType;
-					if (entityActivateType == "pickup") {
+					if (entityActivateType == "pickup" || _loadEntity.entityActivateScript == ActivateLiftable) {
 						entityActivateArgs = [id];
 					} else {
 						entityActivateArgs = _loadEntity.entityActivateArgs;
 					}
 					entityActivateScript = _loadEntity.entityActivateScript;
 					entityCollision = _loadEntity.entityCollision;
+					entityHookable = _loadEntity.entityHookable;
+					entityDropList = _loadEntity.entityDropList;
 					entityFragment = _loadEntity.entityFragment;
 					entityFragmentCount = _loadEntity.entityFragmentCount;
 					entityHitScript = _loadEntity.entityHitScript;
@@ -354,6 +372,7 @@ function LoadRoom(_roomname, _latest) {
 					entityShadow = _loadEntity.entityShadow;
 					entityThrowBreak = _loadEntity.entityThrowBreak;
 					entityThrowDistance = _loadEntity.entityThrowDistance;
+					RestoreEntityRuntimeState(_loadEntity);
 					
 					if (object_index = oShopItem) {
 						image_index = _loadEntity.image_index;
@@ -393,7 +412,7 @@ function LoadRoom(_roomname, _latest) {
 			}
 			var _foundOldLifted = false;
 			var _loadEntity = _loadData.lifted;
-			if (_loadEntity != noone) {
+			if (_loadingGame && _loadEntity != noone) {
 				_foundOldLifted = CheckFoundOldLifted("rBeach", _loadEntity) 
 									|| CheckFoundOldLifted("rBeachCamp", _loadEntity) 
 									|| CheckFoundOldLifted("rBeachTent", _loadEntity) 
@@ -403,7 +422,7 @@ function LoadRoom(_roomname, _latest) {
 					var asset_id = asset_get_index(_loadEntity.obj);
 					var obj_id = instance_create_layer(0, 0, layer, asset_id);
 					with global.iLifted {
-						instance_destroy();
+						instance_destroy(id, false);
 					}
 					global.iLifted = obj_id;
 					with (obj_id) {
@@ -429,6 +448,8 @@ function LoadRoom(_roomname, _latest) {
 						entityActivateArgs = [id];
 						entityActivateScript = _loadEntity.entityActivateScript;
 						entityCollision = _loadEntity.entityCollision;
+						entityHookable = _loadEntity.entityHookable;
+						entityDropList = _loadEntity.entityDropList;
 						entityFragment = _loadEntity.entityFragment;
 						entityFragmentCount = _loadEntity.entityFragmentCount;
 						entityHitScript = _loadEntity.entityHitScript;
@@ -436,6 +457,8 @@ function LoadRoom(_roomname, _latest) {
 						entityShadow = _loadEntity.entityShadow;
 						entityThrowBreak = _loadEntity.entityThrowBreak;
 						entityThrowDistance = _loadEntity.entityThrowDistance;
+						sprite_index = _loadEntity.sprite_index;
+						RestoreEntityRuntimeState(_loadEntity);
 					}
 
 					with (oPlayer) {
@@ -467,6 +490,15 @@ function LoadRoom(_roomname, _latest) {
 				}
 			}
 			
+			// Recreated players may not receive this room's Room Start event.
+			with (oPlayer) {
+				if (global.targetXPlayer != -1) {
+					x = global.targetXPlayer;
+					y = global.targetYPlayer;
+					direction = global.targetDirectionPlayer;
+				}
+				if (instance_exists(oTransition)) state = PlayerStateTransition;
+			}
 			show_debug_message("Game loaded! " + _string);
 			global.gameLoad = false;
 			
@@ -520,23 +552,27 @@ function SaveLatestGame() {
 }
 
 function CopyGameToCurrent() {
-	if (file_exists(GetSavePath("rBeach", true))) {
-		file_copy(GetSavePath("rBeach", true), GetSavePath("rBeach", false));
+	var _rooms = ["rBeach", "rBeachCamp", "rBeachShip", "rBeachTent", "rCave", "savegame"];
+	for (var _i = 0; _i < array_length(_rooms); _i++) {
+		var _source = GetSavePath(_rooms[_i], true);
+		var _destination = GetSavePath(_rooms[_i], false);
+		// file_copy does not overwrite; discard changes made after the checkpoint.
+		if (file_exists(_destination)) file_delete(_destination);
+		if (file_exists(_source)) file_copy(_source, _destination);
 	}
-	if (file_exists(GetSavePath("rBeachCamp", true))) {
-		file_copy(GetSavePath("rBeachCamp", true), GetSavePath("rBeachCamp", false));
-	}
-	if (file_exists(GetSavePath("rBeachShip", true))) {
-		file_copy(GetSavePath("rBeachShip", true), GetSavePath("rBeachShip", false));
-	}
-	if (file_exists(GetSavePath("rBeachTent", true))) {
-		file_copy(GetSavePath("rBeachTent", true), GetSavePath("rBeachTent", false));
-	}
-	if (file_exists(GetSavePath("rCave", true))) {
-		file_copy(GetSavePath("rCave", true), GetSavePath("rCave", false));
-	}
-	if (file_exists(GetSavePath("savegame", true))) {
-		file_copy(GetSavePath("savegame", true), GetSavePath("savegame", false));
+}
+
+function RestoreEntityRuntimeState(_saved) {
+	if (variable_struct_exists(_saved, "image_index")) image_index = _saved.image_index;
+	if (variable_struct_exists(_saved, "runtimeState")) {
+		var _fields = variable_struct_get_names(_saved.runtimeState);
+		for (var _i = 0; _i < array_length(_fields); _i++) {
+			var _field = _fields[_i];
+			variable_instance_set(id, _field, variable_struct_get(_saved.runtimeState, _field));
+		}
+	} else {
+		// Older saves did not contain the trajectory needed to resume a throw.
+		thrown = false;
 	}
 }
 
@@ -559,6 +595,7 @@ function CheckFoundOldLifted(_roomname, _loadEntity) {
 }
 
 function LoadLatestGame() {
+	if (!file_exists(GetSavePath("savegame", true))) return;
 	global.gameLoad = true;
 	// global.isLatest[ROOMS.R_BEACH] = true;
 	// global.isLatest[ROOMS.R_BEACH_CAMP] = true;

@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Enemies",
-    "path": "folders/Scripts/Enemies.yy",
+  "$GMScript":"v1",
+  "%Name":"EnemyTileCollision",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"EnemyTileCollision",
+  "parent":{
+    "name":"Enemies",
+    "path":"folders/Scripts/Enemies.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "EnemyTileCollision",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

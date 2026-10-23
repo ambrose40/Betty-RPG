@@ -1,29 +1,41 @@
 /// @description Draw GUI
-// Draw Playe health
+// Keep health, energy, weapon and coins together in the top-left corner.
 DrawPlayerHealth(global.playerHealth, global.playerHealthMax, 8, 8);
 
-DrawPlayerCoins(28, 31, global.coinsAmount);
+DrawPlayerCoins(8, 64, global.coinsAmount);
 
 //Draw Item box
 var _xx, _yy;
 _xx = 8;
-_yy = 27;
+_yy = 40;
 
 draw_sprite(sItemUIBox,0,_xx,_yy);
+var _weaponText = "No weapon";
 if (global.playerHasAnyItems) {
 	draw_sprite(sItemUI,global.playerEquipped,_xx,_yy);
-
-	if (global.playerAmmo[global.playerEquipped] != -1) {
-		draw_set_font(fText11);
-		draw_set_halign(fa_right);
-		draw_set_valign(fa_bottom);
-		draw_set_colour(c_white);
-		draw_text(
-		_xx + sprite_get_width(sItemUIBox)+1, 
-		_yy + sprite_get_height(sItemUIBox)+1,
-		string(global.playerAmmo[global.playerEquipped]));
+	switch (global.playerEquipped) {
+		case ITEM.BOMB: _weaponText = "Bomb"; break;
+		case ITEM.BOW: _weaponText = "Bow"; break;
+		case ITEM.HOOK: _weaponText = "Hook"; break;
+		default: _weaponText = "No weapon"; break;
+	}
+	if ((global.playerEquipped == ITEM.BOMB || global.playerEquipped == ITEM.BOW)
+		&& global.playerAmmo[global.playerEquipped] != -1) {
+		_weaponText += " x" + string(global.playerAmmo[global.playerEquipped]);
 	}
 }
+var _textX = _xx + sprite_get_width(sItemUIBox) + 5;
+var _textY = _yy + 2;
+draw_set_font(fText10);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+draw_set_colour(c_black);
+draw_text(_textX - 1, _textY, _weaponText);
+draw_text(_textX + 1, _textY, _weaponText);
+draw_text(_textX, _textY - 1, _weaponText);
+draw_text(_textX, _textY + 1, _weaponText);
+draw_set_colour(c_white);
+draw_text(_textX, _textY, _weaponText);
 
 // Draw Player energy
 var _playerEnergy = global.playerEnergy;
@@ -67,7 +79,7 @@ for (var i = 1; i <= _playerEnergyMax; i++) {
 		_imageIndex += (_playerEnergyFrac > 0.857142857);
 		_imageIndex += (_playerEnergyFrac > 0.928571429);
 	}
-	draw_sprite(sEnergy, _imageIndex, RESOLUTION_W - ((_playerEnergyMax - i) * 14) - 24, 8);
+	draw_sprite(sEnergy, _imageIndex, 8 + ((i - 1) * 14), 22);
 }
 
 if (global.iMap == 1) {
@@ -82,7 +94,7 @@ if (oGame.gifRecord) {
 }
 // Show help
 if (keyboard_check(vk_f1)) {
-	DrawHelp("F1 - Help\nF2 - Save game, F3 - Load game\nF4 - Save screenshot, G - Record GIF\nM - Map\nR - Restart game, T - Show mission\nCtrl - Main attack\nTab - Follow Betty\nHome - Rest\nAlt - Use item\nSpace - Roll/Skip/Activate",  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
+	DrawHelp("F1 - Help\nF2 - Save game, F3 - Load game\nF4 - Save screenshot, G - Record GIF\nM - Map\nR - Restart game, T - Show mission\nCtrl - Main attack\nTab - Follow Betty\nHome - Rest\nQ/E - Previous/Next weapon\n1 - Bomb, 2 - Bow, 3 - Hook (unlocked)\nAlt - Use selected weapon\nSpace - Roll/Skip/Activate",  RESOLUTION_W / 2, RESOLUTION_H / 2, RESOLUTION_W - 8 , RESOLUTION_H - 8);
 }
 
 // Show stats

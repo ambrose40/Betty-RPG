@@ -1,6 +1,6 @@
 #macro FRAME_RATE 60
 #macro TILE_SIZE 8
-#macro CARDINAL_DIR round(direction/90)
+#macro CARDINAL_DIR (round(direction / 90) mod 4)
 #macro ROOM_START rTitle
 
 #macro RESOLUTION_W 320	

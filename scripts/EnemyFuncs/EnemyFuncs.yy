@@ -1,12 +1,13 @@
 {
-  "isDnD": false,
-  "isCompatibility": false,
-  "parent": {
-    "name": "Enemies",
-    "path": "folders/Scripts/Enemies.yy",
+  "$GMScript":"v1",
+  "%Name":"EnemyFuncs",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"EnemyFuncs",
+  "parent":{
+    "name":"Enemies",
+    "path":"folders/Scripts/Enemies.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "EnemyFuncs",
-  "tags": [],
-  "resourceType": "GMScript",
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

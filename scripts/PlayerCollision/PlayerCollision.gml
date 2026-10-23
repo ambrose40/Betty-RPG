@@ -48,6 +48,7 @@ function PlayerCollision() {
 		}
 
 		//Vertical Entities
+		ds_list_clear(_entityList);
 		var _entityCount = instance_position_list(x,y+vSpeed,pEntity,_entityList,false);
 		var _snapY;
 		while (_entityCount > 0) {
@@ -72,5 +73,6 @@ function PlayerCollision() {
 
 		//Vertical Move Commit
 		y += vSpeed;
+		ds_list_destroy(_entityList);
 	return _collision;
 }

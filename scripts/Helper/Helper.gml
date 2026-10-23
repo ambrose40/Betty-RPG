@@ -1,3 +1,19 @@
+function SetGamePaused(_paused) {
+	if (global.gamePaused == _paused) return;
+	global.gamePaused = _paused;
+	with (all) {
+		if (_paused) {
+			gamePausedImageSpeed = image_speed;
+			gamePausedSpeed = speed;
+			image_speed = 0;
+			speed = 0;
+		} else if (variable_instance_exists(id, "gamePausedImageSpeed")) {
+			image_speed = gamePausedImageSpeed;
+			if (variable_instance_exists(id, "gamePausedSpeed")) speed = gamePausedSpeed;
+		}
+	}
+}
+
 function NineSliceBoxStretched(_sprite, _x1, _y1, _x2, _y2, _index) {
 
 	/// @desc NineSliceBoxStretched(sprite, x1, y1, x2, y2, index);

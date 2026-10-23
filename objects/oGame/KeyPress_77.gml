@@ -1,4 +1,6 @@
 /// @description Show map
+if (!instance_exists(oPlayer) || instance_exists(oTransition)) exit;
+if (global.iMap == 0 && (global.gamePaused || oPlayer.state != PlayerStateFree)) exit;
 if (global.iMap == 0) {
 	global.lastX = oPlayer.x;
 	global.lastY = oPlayer.y;
